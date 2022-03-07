@@ -5,8 +5,16 @@ const balance = (req, res) => {
   });
 };
 
+const recoverPassword = (req, res) => {
+  res.json({
+    url: req.originalUrl,
+    body: req.body
+  });
+};
+
 
 
 module.exports = {
-  balance
+  balance,
+  recoverPassword
 };
