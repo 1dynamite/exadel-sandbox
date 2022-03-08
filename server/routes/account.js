@@ -1,10 +1,11 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const handler = require('../handlers/account');
+const handler = require("../handlers/account");
 
-router.post('/', handler.create);
+router.post("/", handler.create);
 
-router.route('/:id')
+router
+  .route("/:id")
   .get(handler.read)
   .put(handler.update)
   .delete(handler.remove);

@@ -1,12 +1,12 @@
-const express = require('express');
+const express = require("express");
+const handler = require("../handlers/auth");
+
 const router = express.Router();
-const handler = require('../handlers/auth');
 
-router.get('/login', handler.login);
+router.get("/login", handler.login);
 
-router.get('/logout', handler.logout);
+router.get("/logout", handler.logout);
 
-router.post('/register', handler.register);
-
+router.post("/register", handler.register);
 
 module.exports = router;

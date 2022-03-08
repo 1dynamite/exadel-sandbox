@@ -1,12 +1,9 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const handler = require('../handlers/file');
+const handler = require("../handlers/file");
 
-router.post('/', handler.upload);
+router.post("/", handler.upload);
 
-router.route('/:id')
-  .get(handler.read)
-  .delete(handler.remove);
-  
+router.route("/:id").get(handler.read).delete(handler.remove);
 
 module.exports = router;

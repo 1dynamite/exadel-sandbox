@@ -1,28 +1,28 @@
-const create = (req, res, next) => {
+const create = (req, res) => {
   res.json({
     url: req.originalUrl,
-    body: req.body
+    body: req.body,
   });
 };
 
-const read = (req, res, next) => {
+const read = (req, res) => {
   res.json({
     url: req.originalUrl,
-    body: req.body
+    body: req.body,
   });
 };
 
-const update = (req, res, next) => {
+const update = (req, res) => {
   res.json({
     url: req.originalUrl,
-    body: req.body
+    body: req.body,
   });
 };
 
-const remove = (req, res, next) => {
+const remove = (req, res) => {
   res.json({
     url: req.originalUrl,
-    body: req.body
+    body: req.body,
   });
 };
 
@@ -30,5 +30,5 @@ module.exports = {
   create,
   read,
   update,
-  remove
+  remove,
 };

@@ -1,10 +1,11 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const handler = require('../handlers/income-category');
+const handler = require("../handlers/income-category");
 
-router.post('/', handler.create);
+router.post("/", handler.create);
 
-router.route('/:id')
+router
+  .route("/:id")
   .get(handler.read)
   .put(handler.update)
   .delete(handler.remove);
