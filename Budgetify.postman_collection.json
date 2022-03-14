@@ -1,88 +1,114 @@
 {
 	"info": {
-		"_postman_id": "760e7dac-7dc1-4e80-9c64-cf06317467c8",
+		"_postman_id": "1bdb792c-5bf7-4f3d-bc4f-45342394371c",
 		"name": "Budgetify",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "account",
+			"name": "faq",
 			"item": [
 				{
-					"name": "create account",
+					"name": "create faq",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/account/",
+							"raw": "http://localhost:3000/faq",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"account",
-								""
+								"faq"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "get account",
+					"name": "read faq",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/account/someID",
+							"raw": "http://localhost:3000/faq",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"account",
-								"someID"
+								"faq"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "update account",
+					"name": "update faq",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/account/someID",
+							"raw": "http://localhost:3000/faq",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"account",
-								"someID"
+								"faq"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "delete account",
+					"name": "delete faq",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/account/someID",
+							"raw": "http://localhost:3000/faq",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"account",
-								"someID"
+								"faq"
 							]
 						}
 					},
@@ -91,62 +117,128 @@
 			]
 		},
 		{
-			"name": "admin reports",
+			"name": "login",
 			"item": [
 				{
-					"name": "get total-expenses",
+					"name": "login",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"siri@gmail.com\",\n    \"password\": \"siriPassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/admin-reports/expenses-total",
+							"raw": "http://localhost:3000/login",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"admin-reports",
-								"expenses-total"
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reports",
+			"item": [
+				{
+					"name": "read users.total-expenses",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/reports/users/total-expenses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reports",
+								"users",
+								"total-expenses"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "get average-balance",
+					"name": "read users.average-savings",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/admin-reports/balance-average",
+							"raw": "http://localhost:3000/reports/users/average-savings",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"admin-reports",
-								"balance-average"
+								"reports",
+								"users",
+								"average-savings"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "get users-count",
+					"name": "read users.users-count",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/admin-reports/users-count",
+							"raw": "http://localhost:3000/reports/users/users-count",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"admin-reports",
+								"reports",
+								"users",
 								"users-count"
 							]
 						}
@@ -156,967 +248,1407 @@
 			]
 		},
 		{
-			"name": "app preferences",
+			"name": "users",
 			"item": [
 				{
-					"name": "set language",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/app-preferences/language-set",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"app-preferences",
-								"language-set"
+					"name": "accounts",
+					"item": [
+						{
+							"name": "expenses",
+							"item": [
+								{
+									"name": "create expense",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/expenses",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"expenses"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "read expense",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/expenses/expenseID",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"expenses",
+												"expenseID"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update expense",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/expenses/expenseID",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"expenses",
+												"expenseID"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete expense",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/expenses/expenseID",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"expenses",
+												"expenseID"
+											]
+										}
+									},
+									"response": []
+								}
 							]
+						},
+						{
+							"name": "incomes",
+							"item": [
+								{
+									"name": "create income",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/incomes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"incomes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "read income",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/incomes/incomeID",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"incomes",
+												"incomeID"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update income",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/incomes/incomeID",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"incomes",
+												"incomeID"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete income",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/incomes/incomeID",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"incomes",
+												"incomeID"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "limit-expenses",
+							"item": [
+								{
+									"name": "update limit",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/limit-expenses",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"limit-expenses"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "obligatory-payments",
+							"item": [
+								{
+									"name": "create payment",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/obligatory-payments",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"obligatory-payments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "read payment",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/obligatory-payments/obligatoryPaymentID",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"obligatory-payments",
+												"obligatoryPaymentID"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update pament",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/obligatory-payments/obligatoryPaymentID",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"obligatory-payments",
+												"obligatoryPaymentID"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete payment",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/obligatory-payments/obligatoryPaymentID",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"obligatory-payments",
+												"obligatoryPaymentID"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "piggybanks",
+							"item": [
+								{
+									"name": "create piggybank",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/piggybanks",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"piggybanks"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "read piggybank",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/piggybanks/piggybankID",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"piggybanks",
+												"piggybankID"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update piggybank",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/piggybanks/piggybankID",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"piggybanks",
+												"piggybankID"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete piggybank",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/piggybanks/piggybankID",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"piggybanks",
+												"piggybankID"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "reports",
+							"item": [
+								{
+									"name": "read expenses-total",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/reports/expenses-total",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"reports",
+												"expenses-total"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "read expenses-total-by-category",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/reports/expenses-categories/expensesCategoryId/expenses-total",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"reports",
+												"expenses-categories",
+												"expensesCategoryId",
+												"expenses-total"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "read incomes-total",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/reports/incomes-total",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"reports",
+												"incomes-total"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "read incomes-total-by-source",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/users/userID/accounts/accountID/reports/incomes-sources/incomesSourceId/incomes-total",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"users",
+												"userID",
+												"accounts",
+												"accountID",
+												"reports",
+												"incomes-sources",
+												"incomesSourceId",
+												"incomes-total"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "create account",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/accounts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"accounts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "read account",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/accounts/accountID",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"accounts",
+										"accountID"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update account",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/accounts/accountID",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"accounts",
+										"accountID"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete account",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/accounts/accountID",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"accounts",
+										"accountID"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "set country",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/app-preferences/country-set",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"app-preferences",
-								"country-set"
-							]
+					"name": "app-preferences",
+					"item": [
+						{
+							"name": "update language",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/app-preferences/language-set",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"app-preferences",
+										"language-set"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update country",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/app-preferences/country-set",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"app-preferences",
+										"country-set"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "auth",
-			"item": [
-				{
-					"name": "login",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/auth/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "logout",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/auth/logout",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"auth",
-								"logout"
-							]
+					"name": "expenses-categories",
+					"item": [
+						{
+							"name": "create category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/expenses-categories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"expenses-categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "read category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/expenses-categories/expensesCategoryID",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"expenses-categories",
+										"expensesCategoryID"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/expenses-categories/expensesCategoryID",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"expenses-categories",
+										"expensesCategoryID"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/expenses-categories/expensesCategoryID",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"expenses-categories",
+										"expensesCategoryID"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "expense category",
-			"item": [
-				{
-					"name": "create category",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/expense-category/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"expense-category",
-								""
-							]
-						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "get category",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/expense-category/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"expense-category",
-								"someID"
-							]
+					"name": "incomes-categories",
+					"item": [
+						{
+							"name": "create category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/incomes-categories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"incomes-categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "read category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/incomes-categories/incomesCategoryID",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"incomes-categories",
+										"incomesCategoryID"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/incomes-categories/incomesCategoryID",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"incomes-categories",
+										"incomesCategoryID"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/incomes-categories/incomesCategoryID",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"incomes-categories",
+										"incomesCategoryID"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "update category",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/expense-category/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"expense-category",
-								"someID"
-							]
+					"name": "files",
+					"item": [
+						{
+							"name": "create file",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/files",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"files"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "read file",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/files/fileID",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"files",
+										"fileID"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updatet file",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/files/fileID",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"files",
+										"fileID"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete file",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/files/fileID",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"files",
+										"fileID"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "delete category",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/expense-category/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"expense-category",
-								"someID"
-							]
+					"name": "recover-password",
+					"item": [
+						{
+							"name": "recover-password",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/userID/password-recovery",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"userID",
+										"password-recovery"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "expenses",
-			"item": [
-				{
-					"name": "create expense",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/expenses/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"expenses",
-								""
-							]
-						}
-					},
-					"response": []
+					]
 				},
-				{
-					"name": "get expense",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/expenses/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"expenses",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update expense",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/expenses/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"expenses",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete expense",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/expenses/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"expenses",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "faq",
-			"item": [
-				{
-					"name": "create faq",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/faq/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"faq",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get faq",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/faq/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"faq",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update faq",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/faq/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"faq",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete faq",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/faq/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"faq",
-								""
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "file",
-			"item": [
-				{
-					"name": "create file",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/file/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"file",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get file",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/file/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"file",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete file",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/file/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"file",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "income",
-			"item": [
-				{
-					"name": "create income",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/income/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"income",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get income",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/income/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"income",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update income",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/income/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"income",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete income",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/income/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"income",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "limit expenses",
-			"item": [
-				{
-					"name": "create limit",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/limit-expenses/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"limit-expenses",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get limit",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/limit-expenses/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"limit-expenses",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update limit",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/limit-expenses/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"limit-expenses",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete limit",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/limit-expenses/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"limit-expenses",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "miscellaneous",
-			"item": [
-				{
-					"name": "get balance",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/miscellaneous/balance",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"miscellaneous",
-								"balance"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "obligatory payment",
-			"item": [
-				{
-					"name": "create payment",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/obligatory-payment/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"obligatory-payment",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get payment",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/obligatory-payment/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"obligatory-payment",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update payment",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/obligatory-payment/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"obligatory-payment",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete payment",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/obligatory-payment/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"obligatory-payment",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "piggybank",
-			"item": [
-				{
-					"name": "create piggybank",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/piggybank/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"piggybank",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get piggybank",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/piggybank/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"piggybank",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update piggybank",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/piggybank/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"piggybank",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete piggybank",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/piggybank/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"piggybank",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "statistics",
-			"item": [
-				{
-					"name": "get total expenses",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/statistics/expenses-total",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"statistics",
-								"expenses-total"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get category expenses",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/statistics/expenses-by-category",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"statistics",
-								"expenses-by-category"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get total income",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/statistics/income-by-source",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"statistics",
-								"income-by-source"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get income by source",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/statistics/income-total",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"statistics",
-								"income-total"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "subscription",
-			"item": [
-				{
-					"name": "create subscription",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/subscription/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"subscription",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get subscription",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/subscription/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"subscription",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update subscription",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/subscription/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"subscription",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete subscription",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/subscription/someID",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"subscription",
-								"someID"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "user",
-			"item": [
 				{
 					"name": "create user",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"siri@gmail.com\",\n    \"password\": \"siriPassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/user/",
+							"raw": "http://localhost:3000/users/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"user",
+								"users",
 								""
 							]
 						}
@@ -1124,20 +1656,30 @@
 					"response": []
 				},
 				{
-					"name": "get user",
+					"name": "read user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/user/someID",
+							"raw": "http://localhost:3000/users/userID",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"user",
-								"someID"
+								"users",
+								"userID"
 							]
 						}
 					},
@@ -1146,18 +1688,28 @@
 				{
 					"name": "update user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/user/someID",
+							"raw": "http://localhost:3000/users/userID",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"user",
-								"someID"
+								"users",
+								"userID"
 							]
 						}
 					},
@@ -1166,18 +1718,28 @@
 				{
 					"name": "delete user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/user/someID",
+							"raw": "http://localhost:3000/users/userID",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"user",
-								"someID"
+								"users",
+								"userID"
 							]
 						}
 					},
