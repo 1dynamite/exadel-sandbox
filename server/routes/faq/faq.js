@@ -8,7 +8,7 @@ const router = express.Router();
 router
   .route("/")
   .get(handler.read)
-  .all(isSignedIn(), isAdmin)
+  .all(isSignedIn, isAdmin)
   .post(handler.create)
   .put(handler.edit)
   .delete(handler.remove);

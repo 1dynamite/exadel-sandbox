@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.route("/").post(handler.create);
 
-router.use("/:userId", isSignedIn(), isAuthorized);
+router.use("/:userId", isSignedIn, isAuthorized);
 
 router
   .route("/:userId")

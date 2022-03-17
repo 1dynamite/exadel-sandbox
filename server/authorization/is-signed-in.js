@@ -29,4 +29,4 @@ const passAuth = passport.authenticate("jwt", {
   session: false,
 });
 
-module.exports = () => [init, passAuth];
+module.exports = [init, passAuth];
