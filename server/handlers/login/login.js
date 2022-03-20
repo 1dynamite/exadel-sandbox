@@ -1,19 +1,18 @@
 const jwt = require("jsonwebtoken");
-const users = require("../../database/db.users");
+const User = require("../../models/user/user");
 
-const login = (req, res) => {
+const login = async (req, res) => {
+  if (!req.body.email || !req.body.password)
+    return res
+      .status(400)
+      .end("Request body should hold email and password fields");
+
   try {
-    if (!req.body.email || !req.body.password)
-      return res
-        .status(400)
-        .end("Request body should hold email and password fields");
-
-    const user = users.signinUser(req.body.email, req.body.password);
-
-    if (!user) return res.status(404).end("User not found");
+    const user = await User.authenticate(req.body.email, req.body.password);
 
     const payload = {
-      id: user.id,
+      _id: user._id,
+      name: user.name,
       email: user.email,
       role: user.role,
     };

@@ -1,16 +1,17 @@
 const passport = require("passport");
 const JwtStrategy = require("passport-jwt").Strategy;
 const { ExtractJwt } = require("passport-jwt");
-const users = require("../database/db.users");
+const User = require("../models/user/user");
 
-const jwtCallback = (payload, done) => {
-  const user = users.getUserByID(payload.id);
+const jwtCallback = async (payload, done) => {
+  const user = await User.findById(payload._id);
 
   if (user)
     return done(null, {
-      id: payload.id,
-      email: payload.email,
-      role: payload.role,
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
     });
 
   return done(null, false);

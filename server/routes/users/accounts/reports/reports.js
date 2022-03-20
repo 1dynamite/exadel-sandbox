@@ -17,7 +17,4 @@ router.get(
   handler.incomesTotalBySource
 );
 
-router.param("expensesCategoryId", handler.expensesCategoryById);
-router.param("incomesSourceId", handler.incomesSourceById);
-
 module.exports = router;
