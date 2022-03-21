@@ -57,13 +57,13 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
   try {
-    const incomesObg = await Income.findById(req.account.incomesId);
+    const incomesObj = await Income.findById(req.account.incomesId);
 
-    incomesObg.incomes = incomesObg.incomes.filter(
+    incomesObj.incomes = incomesObj.incomes.filter(
       (elem) => elem._id.toString() !== req.income._id.toString()
     );
 
-    await incomesObg.save();
+    await incomesObj.save();
 
     res.json({
       message: "Income successfully deleted!",
@@ -77,9 +77,9 @@ const remove = async (req, res) => {
 
 const incomeById = async (req, res, next, incomeId) => {
   try {
-    const incomesObg = await Income.findById(req.account.incomesId);
+    const incomesObj = await Income.findById(req.account.incomesId);
 
-    const income = incomesObg.incomes.find(
+    const income = incomesObj.incomes.find(
       (elem) => elem._id.toString() === incomeId
     );
 

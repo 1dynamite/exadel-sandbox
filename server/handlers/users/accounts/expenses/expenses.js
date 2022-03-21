@@ -57,13 +57,13 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
   try {
-    const expensesObg = await Expense.findById(req.account.expensesId);
+    const expensesObj = await Expense.findById(req.account.expensesId);
 
-    expensesObg.expenses = expensesObg.expenses.filter(
+    expensesObj.expenses = expensesObj.expenses.filter(
       (elem) => elem._id.toString() !== req.expense._id.toString()
     );
 
-    await expensesObg.save();
+    await expensesObj.save();
 
     res.json({
       message: "Expense successfully deleted!",
