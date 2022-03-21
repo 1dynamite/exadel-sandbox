@@ -5,7 +5,7 @@ const isAdmin = require("../../authorization/is-admin");
 
 const router = express.Router();
 
-router.use(isSignedIn(), isAdmin);
+router.use(isSignedIn, isAdmin);
 
 router.get("/users/total-expenses", handler.expensesTotal);
 
