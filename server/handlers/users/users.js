@@ -20,6 +20,7 @@ const create = async (req, res) => {
 
     return res.json({
       message: "User successfully created!",
+      user,
     });
   } catch (err) {
     const message = getErrorMessage(err);
@@ -40,7 +41,8 @@ const update = async (req, res) => {
     await req.profile.save();
 
     return res.json({
-      message: "User is successfully updated",
+      message: "User is successfully updated!",
+      user: req.profile,
     });
   } catch (err) {
     const message = getErrorMessage(err);
@@ -57,11 +59,11 @@ const remove = async (req, res) => {
       userId: req.profile._id,
     });
 
-    await User.deleteOne({
+    const deletedCount = await User.deleteOne({
       _id: req.profile._id,
     });
 
-    res.json({ message: "User was successfully deleted" });
+    res.json({ message: "User is successfully deleted!", ...deletedCount });
   } catch (err) {
     res.status(400).json({
       message: "Something went wrong",
