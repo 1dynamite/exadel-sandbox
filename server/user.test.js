@@ -9,7 +9,7 @@ const variables = {
 
 beforeAll(async () => {
   await mongoose.disconnect();
-  await mongoose.connect("mongodb://localhost:27017/budgetify");
+  await mongoose.connect(process.env.MONGODB_URI_TEST);
 });
 
 afterAll(async () => {
