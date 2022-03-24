@@ -1,3 +1,4 @@
+require("dotenv").config(); //needed when running the tests
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
