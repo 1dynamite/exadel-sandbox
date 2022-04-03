@@ -1,0 +1,29 @@
+<div class="root" *ngIf="user">
+  <div class="column">
+    <div class="logo-container">
+      <p class="logo">Budgetify</p>
+    </div>
+    <div class="accounts-container">
+      <p>Here, you can navigate to different accounts</p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="nav-bar">
+      <button mat-button class="nav-item">Subscription</button>
+      <button mat-button class="nav-item">Obligatory</button>
+      <button mat-button class="nav-item">Statistics</button>
+    </div>
+    <div class="transactions-container">
+      <p>Here, you can view transactions made from the selected account</p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="profile">
+      <mat-icon>person</mat-icon>
+      <p class="username">{{ user.name.firstName }}</p>
+    </div>
+    <div class="actions-container">
+      <p>Here, you can add transaction, a new account, piggybank...</p>
+    </div>
+  </div>
+</div>

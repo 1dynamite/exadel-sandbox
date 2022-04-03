@@ -1,0 +1,82 @@
+@use "@angular/material" as mat;
+@use "/src/constants" as theme;
+
+$primary-lighter: mat.get-color-from-palette(theme.$palette-primary, "lighter");
+
+.root {
+  height: 100%;
+  display: flex;
+  background-color: theme.$grey-bg-color;
+  gap: 1rem;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.logo-container {
+  display: flex;
+  height: 3rem;
+  align-items: center;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.logo {
+  margin: 0;
+  padding-right: 1rem;
+}
+
+.accounts-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1rem;
+  height: 100%;
+  border: 1px solid $primary-lighter;
+}
+
+.nav-bar {
+  display: flex;
+  gap: 0.3rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+}
+
+.nav-item {
+  font-weight: normal;
+}
+
+.transactions-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border: 1px solid $primary-lighter;
+  padding: 1rem;
+}
+
+.actions-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border: 1px solid $primary-lighter;
+  padding: 1rem;
+}
+
+.profile {
+  display: flex;
+  height: 3rem;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.username {
+  margin: 0;
+  margin-left: 0.3rem;
+}

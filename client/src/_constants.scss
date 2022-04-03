@@ -1,0 +1,8 @@
+@use "@angular/material" as mat;
+
+$palette-primary: mat.define-palette(mat.$indigo-palette);
+$palette-secondary: mat.define-palette(mat.$pink-palette);
+
+$border-radius: 10px;
+
+$grey-bg-color: #efefef;
