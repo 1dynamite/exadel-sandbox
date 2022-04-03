@@ -1,4 +1,4 @@
-require("dotenv").config(); //needed when running the tests
+//require("dotenv").config(); //needed when running the tests
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
@@ -10,6 +10,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, "../public")));
 
-app.use(routes);
+app.use("/api", routes);
 
 module.exports = app;
