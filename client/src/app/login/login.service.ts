@@ -9,6 +9,13 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { LoginData } from './login';
+import { User } from '../user';
+
+interface LoginResponseOK {
+  token: string;
+  expiresIn: string;
+  user: User;
+}
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
@@ -24,7 +31,7 @@ export class LoginService {
     const res = this.http
       .post<any>(this.loginUrl, loginData, this.httpOptions)
       .pipe(
-        map((data) => {
+        map((data: LoginResponseOK) => {
           this.setSession(data);
 
           return { status: 200, user: data.user };
@@ -48,7 +55,7 @@ export class LoginService {
     return false;
   }
 
-  private setSession(data: any) {
+  private setSession(data: LoginResponseOK) {
     const expiresIn = Date.now() + Number(data.expiresIn);
     localStorage.setItem('token', data.token);
     localStorage.setItem('expiresIn', String(expiresIn));

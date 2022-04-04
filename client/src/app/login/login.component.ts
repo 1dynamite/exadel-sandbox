@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
+import { User } from '../user';
 
 @Component({
   selector: 'app-login',
@@ -27,8 +28,12 @@ export class LoginComponent {
       if (res.status === 200) {
         this.serverErrorMessage = null;
 
+        const userFromResponse: User = res.user;
+
         this.router.navigateByUrl('/dashboard', {
-          state: res.user,
+          state: {
+            user: userFromResponse,
+          },
         });
       } else {
         this.serverErrorMessage = res.message;
