@@ -17,6 +17,12 @@ interface LoginResponseOK {
   user: User;
 }
 
+interface LoginReturn {
+  status: number;
+  user?: User;
+  message?: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class LoginService {
   private loginUrl = '/api/login';
@@ -27,7 +33,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) {}
 
-  login(loginData: LoginData): Observable<any> {
+  login(loginData: LoginData): Observable<LoginReturn> {
     const res = this.http
       .post<any>(this.loginUrl, loginData, this.httpOptions)
       .pipe(
@@ -47,7 +53,7 @@ export class LoginService {
     return res;
   }
 
-  isLoggedIn() {
+  isLoggedIn(): boolean {
     const expiresIn = localStorage.getItem('expiresIn');
     if (expiresIn) {
       return Date.now() < Number(expiresIn);
@@ -55,7 +61,7 @@ export class LoginService {
     return false;
   }
 
-  private setSession(data: LoginResponseOK) {
+  private setSession(data: LoginResponseOK): void {
     const expiresIn = Date.now() + Number(data.expiresIn);
     localStorage.setItem('token', data.token);
     localStorage.setItem('expiresIn', String(expiresIn));

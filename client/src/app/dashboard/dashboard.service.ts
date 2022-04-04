@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import jwt_decode from 'jwt-decode';
 
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { User } from '../user';
 
@@ -35,7 +35,7 @@ export class DashboardService {
     }
   }
 
-  getUser() {
+  getUser(): Observable<User> | Observable<never> {
     if (!this.userUrl) {
       return throwError(() => new Error('User is unauthenticated'));
     }

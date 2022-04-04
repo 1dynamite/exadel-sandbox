@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
     if (!this.user) this.dashboardService.getUser().subscribe(myObserver);
   }
 
-  logout() {
+  logout(): void {
     localStorage.clear();
   }
 }

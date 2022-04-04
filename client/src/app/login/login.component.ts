@@ -15,7 +15,7 @@ export class LoginComponent {
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
 
-  serverErrorMessage: string | null = null;
+  serverErrorMessage: string | null | undefined = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,12 +23,12 @@ export class LoginComponent {
     private router: Router
   ) {}
 
-  onSubmit() {
+  onSubmit(): void {
     this.loginService.login(this.loginForm.value).subscribe((res) => {
       if (res.status === 200) {
         this.serverErrorMessage = null;
 
-        const userFromResponse: User = res.user;
+        const userFromResponse: User | undefined = res.user;
 
         this.router.navigateByUrl('/dashboard', {
           state: {
@@ -41,7 +41,7 @@ export class LoginComponent {
     });
   }
 
-  getErrorMessage(field: string) {
+  getErrorMessage(field: string): string {
     if (this.loginForm.get(field)?.hasError('required')) {
       return 'Required field should not be empty';
     }
