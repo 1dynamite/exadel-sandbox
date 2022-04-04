@@ -14,6 +14,7 @@ $primary-lighter: mat.get-color-from-palette(theme.$palette-primary, "lighter");
   display: flex;
   flex-direction: column;
   height: 100%;
+  flex-grow: 1;
 }
 
 .logo-container {
@@ -39,14 +40,8 @@ $primary-lighter: mat.get-color-from-palette(theme.$palette-primary, "lighter");
 }
 
 .nav-bar {
-  display: flex;
-  gap: 0.3rem;
   height: 3rem;
   margin-bottom: 1rem;
-}
-
-.nav-item {
-  font-weight: normal;
 }
 
 .transactions-container {
@@ -68,15 +63,6 @@ $primary-lighter: mat.get-color-from-palette(theme.$palette-primary, "lighter");
 }
 
 .profile {
-  display: flex;
   height: 3rem;
-  justify-content: flex-end;
-  align-items: center;
-  padding-right: 1rem;
   margin-bottom: 1rem;
-}
-
-.username {
-  margin: 0;
-  margin-left: 0.3rem;
 }

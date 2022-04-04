@@ -9,9 +9,7 @@
   </div>
   <div class="column">
     <div class="nav-bar">
-      <button mat-button class="nav-item">Subscription</button>
-      <button mat-button class="nav-item">Obligatory</button>
-      <button mat-button class="nav-item">Statistics</button>
+      <app-nav-bar-main></app-nav-bar-main>
     </div>
     <div class="transactions-container">
       <p>Here, you can view transactions made from the selected account</p>
@@ -19,8 +17,9 @@
   </div>
   <div class="column">
     <div class="profile">
-      <mat-icon>person</mat-icon>
-      <p class="username">{{ user.name.firstName }}</p>
+      <app-nav-bar-profile
+        [firstName]="user.name.firstName"
+      ></app-nav-bar-profile>
     </div>
     <div class="actions-container">
       <p>Here, you can add transaction, a new account, piggybank...</p>

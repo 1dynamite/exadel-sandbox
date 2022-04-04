@@ -8,20 +8,7 @@ import {
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-import { LoginData } from './login';
-import { User } from '../user';
-
-interface LoginResponseOK {
-  token: string;
-  expiresIn: string;
-  user: User;
-}
-
-interface LoginReturn {
-  status: number;
-  user?: User;
-  message?: string;
-}
+import { LoginData, LoginResponseOK, LoginReturn } from './login';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
