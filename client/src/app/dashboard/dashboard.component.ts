@@ -13,6 +13,7 @@ import { DashboardService } from './dashboard.service';
 })
 export class DashboardComponent implements OnInit {
   user: User | undefined;
+  selectedAccount: string | null = null;
 
   constructor(
     private router: Router,

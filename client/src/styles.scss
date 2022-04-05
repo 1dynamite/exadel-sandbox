@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@use "/src/constants" as theme;
 
 html,
 body {
@@ -11,4 +12,9 @@ body {
 
 div {
   box-sizing: border-box;
+}
+
+div.mat-form-field-outline {
+  background-color: theme.$light-bg-color;
+  border-radius: theme.$border-radius;
 }

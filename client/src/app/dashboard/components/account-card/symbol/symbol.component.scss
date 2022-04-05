@@ -1,0 +1,26 @@
+@use "@angular/material" as mat;
+@use "/src/constants" as theme;
+
+$primary-400: mat.get-color-from-palette(theme.$palette-primary, 400);
+
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.symbol-container {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: theme.$light-bg-color;
+}
+
+.symbol {
+  margin: 0;
+  font-size: 1.5rem;
+  color: $primary-400;
+}

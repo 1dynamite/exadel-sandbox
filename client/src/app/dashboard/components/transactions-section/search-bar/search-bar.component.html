@@ -1,0 +1,19 @@
+<div class="root">
+  <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <input
+        type="text"
+        placeholder="Search"
+        matInput
+        [formControl]="myControl"
+        [matAutocomplete]="auto"
+      />
+      <mat-icon matPrefix class="search-icon">search</mat-icon>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of options" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>

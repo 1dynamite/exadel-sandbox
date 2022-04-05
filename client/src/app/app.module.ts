@@ -13,6 +13,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavBarMainComponent } from './dashboard/components/nav-bar-main/nav-bar-main.component';
 import { NavBarProfileComponent } from './dashboard/components/nav-bar-profile/nav-bar-profile.component';
+import { AccountCardComponent } from './dashboard/components/account-card/account-card.component';
+import { SymbolComponent } from './dashboard/components/account-card/symbol/symbol.component';
+import { TransactionsSectionComponent } from './dashboard/components/transactions-section/transactions-section.component';
+import { TransactionsComponent } from './dashboard/components/transactions-section/transactions/transactions.component';
+import { SearchBarModule } from './dashboard/components/transactions-section/search-bar/search-bar.module';
+import { TransactionComponent } from './dashboard/components/transactions-section/transactions/transaction/transaction.component';
+import { ActionsSectionComponent } from './dashboard/components/actions-section/actions-section.component';
+import { PiggybankComponent } from './dashboard/components/actions-section/piggybank/piggybank.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +29,13 @@ import { NavBarProfileComponent } from './dashboard/components/nav-bar-profile/n
     DashboardComponent,
     NavBarMainComponent,
     NavBarProfileComponent,
+    AccountCardComponent,
+    SymbolComponent,
+    TransactionsSectionComponent,
+    TransactionsComponent,
+    TransactionComponent,
+    ActionsSectionComponent,
+    PiggybankComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +43,7 @@ import { NavBarProfileComponent } from './dashboard/components/nav-bar-profile/n
     BrowserAnimationsModule,
     HttpClientModule,
     LoginModule,
+    SearchBarModule,
     MatIconModule,
     MatButtonModule,
   ],

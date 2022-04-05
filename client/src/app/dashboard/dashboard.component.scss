@@ -2,6 +2,10 @@
 @use "/src/constants" as theme;
 
 $primary-lighter: mat.get-color-from-palette(theme.$palette-primary, "lighter");
+$secondary-default: mat.get-color-from-palette(
+  theme.$palette-secondary,
+  "default"
+);
 
 .root {
   height: 100%;
@@ -10,11 +14,26 @@ $primary-lighter: mat.get-color-from-palette(theme.$palette-primary, "lighter");
   gap: 1rem;
 }
 
-.column {
+%column {
   display: flex;
   flex-direction: column;
   height: 100%;
-  flex-grow: 1;
+  gap: 1rem;
+}
+
+.column-1 {
+  @extend %column;
+  width: 30%;
+}
+
+.column-2 {
+  @extend %column;
+  width: 45%;
+}
+
+.column-3 {
+  @extend %column;
+  width: 25%;
 }
 
 .logo-container {
@@ -22,47 +41,39 @@ $primary-lighter: mat.get-color-from-palette(theme.$palette-primary, "lighter");
   height: 3rem;
   align-items: center;
   padding-left: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 0.5rem;
 }
 
 .logo {
+  font-size: larger;
   margin: 0;
   padding-right: 1rem;
 }
 
 .accounts-container {
+  padding: 1rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 1rem;
+  flex-direction: column;
+  gap: 2rem;
   height: 100%;
-  border: 1px solid $primary-lighter;
 }
 
 .nav-bar {
   height: 3rem;
-  margin-bottom: 1rem;
+  margin-top: 0.5rem;
 }
 
 .transactions-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100%;
-  border: 1px solid $primary-lighter;
   padding: 1rem;
 }
 
 .actions-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100%;
-  border: 1px solid $primary-lighter;
   padding: 1rem;
 }
 
 .profile {
   height: 3rem;
-  margin-bottom: 1rem;
+  margin-top: 0.5rem;
 }
