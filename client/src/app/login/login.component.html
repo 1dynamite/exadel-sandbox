@@ -1,0 +1,31 @@
+<div class="root">
+  <div class="login-panel">
+    <div class="title">
+      <h1>Login</h1>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" />
+        <mat-error *ngIf="loginForm.get('email')?.invalid">
+          {{ getErrorMessage("email") }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password" />
+        <mat-error *ngIf="loginForm.get('password')?.invalid">
+          {{ getErrorMessage("password") }}
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" [disabled]="!loginForm.valid">
+        SUBMIT
+      </button>
+      <mat-error *ngIf="serverErrorMessage" class="error">
+        <mat-icon>error_outline</mat-icon>{{ serverErrorMessage }}
+      </mat-error>
+    </form>
+  </div>
+</div>

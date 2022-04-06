@@ -1,0 +1,79 @@
+@use "@angular/material" as mat;
+@use "/src/constants" as theme;
+
+$primary-lighter: mat.get-color-from-palette(theme.$palette-primary, "lighter");
+$secondary-default: mat.get-color-from-palette(
+  theme.$palette-secondary,
+  "default"
+);
+
+.root {
+  height: 100%;
+  display: flex;
+  background-color: theme.$grey-bg-color;
+  gap: 1rem;
+}
+
+%column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1rem;
+}
+
+.column-1 {
+  @extend %column;
+  width: 30%;
+}
+
+.column-2 {
+  @extend %column;
+  width: 45%;
+}
+
+.column-3 {
+  @extend %column;
+  width: 25%;
+}
+
+.logo-container {
+  display: flex;
+  height: 3rem;
+  align-items: center;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+.logo {
+  font-size: larger;
+  margin: 0;
+  padding-right: 1rem;
+}
+
+.accounts-container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 100%;
+}
+
+.nav-bar {
+  height: 3rem;
+  margin-top: 0.5rem;
+}
+
+.transactions-container {
+  height: 100%;
+  padding: 1rem;
+}
+
+.actions-container {
+  height: 100%;
+  padding: 1rem;
+}
+
+.profile {
+  height: 3rem;
+  margin-top: 0.5rem;
+}

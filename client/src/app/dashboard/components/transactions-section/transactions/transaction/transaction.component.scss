@@ -1,0 +1,82 @@
+@use "/src/constants" as theme;
+
+.root {
+  display: flex;
+  height: 6rem;
+  background-color: theme.$light-bg-color;
+  border-radius: theme.$border-radius;
+  padding: 0.8rem 1rem;
+  gap: 1rem;
+}
+
+.column-1 {
+  flex: 1 1 0;
+  background-color: theme.$grey-bg-color;
+  border-radius: theme.$border-radius;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.column-2 {
+  flex: 2 2 0; /* 
+  background-color: theme.$grey-bg-color; */
+  border-radius: theme.$border-radius;
+  display: flex;
+  flex-direction: column;
+  padding: 0.3rem 0.5rem;
+}
+
+.category {
+  margin: 0;
+  font-weight: 500;
+}
+
+.top-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.amount {
+  font-size: larger;
+  color: theme.$palette-warn;
+}
+
+.bottom-details {
+  display: flex;
+}
+
+.bottom-details > div {
+  display: flex;
+  align-items: center;
+}
+
+.dot {
+  margin: 0 0.5rem;
+  height: 1px;
+  width: 1px;
+  background-color: rgba($color: #000000, $alpha: 0.9);
+  border: 1px solid rgba($color: #000000, $alpha: 0.9);
+}
+
+.detail {
+  margin: 0;
+}
+
+.trans-icon-container {
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: theme.$palette-warn;
+  border-radius: 50%;
+  margin-right: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trans-icon {
+  color: white;
+  font-size: 1.2rem;
+  height: max-content;
+  width: max-content;
+}

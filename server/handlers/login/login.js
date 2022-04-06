@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../../models/user/user");
+const expiresIn = require("../../helpers/expires-in");
 
 const login = async (req, res) => {
   if (!req.body.email || !req.body.password)
@@ -21,7 +22,19 @@ const login = async (req, res) => {
       expiresIn: process.env.JWT_EXPIRES_IN,
     });
 
-    return res.json(`Bearer ${token}`);
+    return res.json({
+      token: `Bearer ${token}`,
+      expiresIn: expiresIn(process.env.JWT_EXPIRES_IN),
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        accounts: user.accounts,
+        incomeCategories: user.incomeCategories,
+        expenseCategories: user.expenseCategories,
+      },
+    });
   } catch (err) {
     return res.status(400).end(err.message);
   }

@@ -1,0 +1,39 @@
+<div class="root" *ngIf="user">
+  <div class="column-1">
+    <div class="logo-container">
+      <p class="logo">Budgetify</p>
+    </div>
+    <div class="accounts-container">
+      <app-account-card
+        [selected]="true"
+        [name]="'Debit Card'"
+        [balance]="'5,356.18'"
+        [symbol]="'&#x24;'"
+      ></app-account-card>
+      <app-account-card
+        [selected]="false"
+        [name]="'Credit Card'"
+        [balance]="'815.60'"
+        [symbol]="'&#x20AC;'"
+      ></app-account-card>
+    </div>
+  </div>
+  <div class="column-2">
+    <div class="nav-bar">
+      <app-nav-bar-main></app-nav-bar-main>
+    </div>
+    <div class="transactions-container">
+      <app-transactions-section></app-transactions-section>
+    </div>
+  </div>
+  <div class="column-3">
+    <div class="profile">
+      <app-nav-bar-profile
+        [firstName]="user.name.firstName"
+      ></app-nav-bar-profile>
+    </div>
+    <div class="actions-container">
+      <app-actions-section></app-actions-section>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+@use "@angular/material" as mat;
+@use "/src/constants" as theme;
+
+$primary-lighter: mat.get-color-from-palette(theme.$palette-primary, 400);
+$secondary-default: mat.get-color-from-palette(
+  theme.$palette-secondary,
+  "default"
+);
+
+.root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.top-chunk,
+.bottom-chunk {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.top-chunk > div,
+.bottom-chunk > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: theme.$border-radius;
+}
+
+.arrows-bar {
+  background-color: theme.$light-bg-color;
+}
+
+%arrow-container {
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow-up {
+  @extend %arrow-container;
+
+  background-color: theme.$palette-success;
+}
+
+.arrow-down {
+  @extend %arrow-container;
+
+  background-color: theme.$palette-warn;
+}
+
+.arrow-icon {
+  height: max-content;
+  width: max-content;
+  font-size: 1.2rem;
+}
+
+.top-action-bar {
+  background-color: $primary-lighter;
+  color: white;
+}
+
+.add-icon {
+  color: rgba($color: #000000, $alpha: 0.5);
+  background-color: theme.$light-bg-color;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+p {
+  margin: 0;
+}
