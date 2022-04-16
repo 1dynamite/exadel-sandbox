@@ -1,16 +1,28 @@
 const User = require("../../models/user/user");
-const Income = require("../../models/income/income");
-const Expense = require("../../models/expense/expense");
+const Transactions = require("../../models/transactions/transactions");
+const PredefCategories = require("../../models/predef-categories/predef-categories");
 const getErrorMessage = require("../../helpers/getErrorMessage");
 
 const role = "user";
 
 const create = async (req, res) => {
+  let predefinedCategories;
+
+  try {
+    predefinedCategories = await PredefCategories.find();
+  } catch (error) {
+    return res.status(500).json({
+      message: "Something went wrong",
+      error,
+    });
+  }
+
   const userData = {
     role,
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
+    categories: predefinedCategories,
   };
 
   const user = new User(userData);
@@ -53,11 +65,7 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
   try {
-    await Income.deleteMany({ userId: req.profile._id });
-
-    await Expense.deleteMany({
-      userId: req.profile._id,
-    });
+    await Transactions.deleteMany({ userId: req.profile._id });
 
     const deletedCount = await User.deleteOne({
       _id: req.profile._id,

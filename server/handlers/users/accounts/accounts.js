@@ -1,44 +1,43 @@
 const mongoose = require("mongoose");
-const Income = require("../../../models/income/income");
-const Expense = require("../../../models/expense/expense");
+const Transactions = require("../../../models/transactions/transactions");
 const getErrorMessage = require("../../../helpers/getErrorMessage");
 
 const create = async (req, res) => {
   const user = req.profile;
 
   const newAccount = {
-    incomesId: new mongoose.Types.ObjectId(),
-    expensesId: new mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
+    transactions: new mongoose.Types.ObjectId(),
     currency: {
-      name: req.body.currencyName,
-      symbol: req.body.currencySymbol,
+      _id: req.body.currency._id,
+      name: req.body.currency.name,
+      symbol: req.body.currency.symbol,
     },
+    title: req.body.title,
+    description: req.body.description,
   };
 
-  const newIncome = {
-    _id: newAccount.incomesId,
+  const newTransactionsById = {
+    _id: newAccount.transactions,
     userId: user._id,
-    incomes: [],
-  };
-
-  const newExpense = {
-    _id: newAccount.expensesId,
-    userId: user._id,
-    expenses: [],
+    transactions: [],
   };
 
   user.accounts.push(newAccount);
 
-  const income = new Income(newIncome);
-  const expense = new Expense(newExpense);
+  const transactions = new Transactions(newTransactionsById);
 
   try {
     await user.save();
-    await income.save();
-    await expense.save();
+    await transactions.save();
+
+    const account = user.accounts.find(
+      (elem) => elem._id.toString() === newAccount._id.toString()
+    );
 
     return res.json({
       message: "Account successfully created!",
+      account,
     });
   } catch (err) {
     const message = getErrorMessage(err);
@@ -52,14 +51,16 @@ const read = (req, res) => {
 };
 
 const update = async (req, res) => {
-  req.account.currency.name = req.body.currencyName;
-  req.account.currency.symbol = req.body.currencySymbol;
+  req.account.currency = req.body.currency;
+  req.account.title = req.body.title;
+  req.account.description = req.body.description;
 
   try {
     await req.profile.save();
 
     return res.json({
       message: "Account is successfully updated",
+      account: req.account,
     });
   } catch (err) {
     const message = getErrorMessage(err);
@@ -70,15 +71,25 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
   try {
-    await Income.deleteOne({ _id: req.account.incomesId });
-    await Expense.deleteOne({ _id: req.account.expensesId });
+    let account;
 
-    req.profile.accounts = req.profile.accounts.filter(
-      (elem) => elem._id.toString() !== req.account._id.toString()
-    );
+    req.profile.accounts = req.profile.accounts.filter((elem) => {
+      const cond = elem._id.toString() !== req.account._id.toString();
+
+      if (!cond) account = elem;
+
+      return cond;
+    });
+
+    if (account === undefined)
+      return res.status(400).json({
+        message: "Accound could not be found",
+      });
+
     await req.profile.save();
+    await Transactions.deleteOne({ _id: req.account.transactions });
 
-    res.json({ message: "Account was successfully removed" });
+    res.json({ message: "Account was successfully removed", account });
   } catch (err) {
     res.status(400).json({
       message: "Something went wrong",

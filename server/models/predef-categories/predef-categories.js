@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const categorySchema = new mongoose.Schema({
+const predefCategoriesSchema = new mongoose.Schema({
   title: {
     type: String,
     required: "Category title is required",
@@ -16,4 +16,8 @@ const categorySchema = new mongoose.Schema({
   transactions: [mongoose.ObjectId],
 });
 
-module.exports = categorySchema;
+module.exports = mongoose.model(
+  "PredefCategories",
+  predefCategoriesSchema,
+  "predefined_categories"
+);

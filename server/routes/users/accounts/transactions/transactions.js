@@ -1,16 +1,17 @@
 const express = require("express");
-const handler = require("../../../../handlers/users/accounts/expenses/expenses");
+const handler = require("../../../../handlers/users/accounts/transactions/transactions");
 
 const router = express.Router();
 
+router.get("/", handler.readAll);
 router.post("/", handler.create);
 
 router
-  .route("/:expenseId")
+  .route("/:transactionId")
   .get(handler.read)
   .put(handler.update)
   .delete(handler.remove);
 
-router.param("expenseId", handler.expenseById);
+router.param("transactionId", handler.transactionById);
 
 module.exports = router;
