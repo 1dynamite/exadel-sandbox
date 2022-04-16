@@ -1,5 +1,12 @@
 <div class="root">
+  <!-- <app-transaction></app-transaction>
   <app-transaction></app-transaction>
-  <app-transaction></app-transaction>
-  <app-transaction></app-transaction>
+  <app-transaction></app-transaction> -->
+  <ng-container *ngIf="transactions">
+    <app-transaction
+      *ngFor="let transaction of transactions"
+      [transaction]="transaction"
+      [symbol]="symbol"
+    ></app-transaction>
+  </ng-container>
 </div>

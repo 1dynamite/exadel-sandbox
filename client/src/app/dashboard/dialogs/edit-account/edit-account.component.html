@@ -1,0 +1,33 @@
+<div class="title">
+  <div class="title-text">
+    <h1 mat-dialog-title>Edit Account</h1>
+  </div>
+
+  <button mat-icon-button (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content class="fields-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="title" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-select [(value)]="selected">
+      <ng-container *ngIf="currencies">
+        <mat-option *ngFor="let currency of currencies" [value]="currency._id">
+          {{ currency.name }}
+        </mat-option>
+      </ng-container>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput [(ngModel)]="description"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="actions">
+  <button class="save" mat-button (click)="onClickSave()" cdkFocusInitial>
+    Save
+  </button>
+</div>

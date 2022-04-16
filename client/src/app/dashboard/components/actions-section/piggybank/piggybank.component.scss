@@ -1,0 +1,69 @@
+@use "@angular/material" as mat;
+@use "/src/constants" as theme;
+
+$primary-lighter: mat.get-color-from-palette(theme.$palette-primary, 400);
+$secondary-default: mat.get-color-from-palette(
+  theme.$palette-secondary,
+  "lighter"
+);
+
+.root {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: theme.$border-radius;
+  background-color: $secondary-default;
+}
+
+.column-1 {
+  display: flex;
+  align-items: center;
+}
+
+.column-2 {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 0.3rem;
+}
+
+.title-bar-add {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-bar {
+  display: flex;
+  flex-direction: column;
+}
+
+.piggy {
+  height: 1.2rem;
+}
+
+.piggy-container {
+  height: 1.8rem;
+  width: 1.8rem;
+  border-radius: 50%;
+  background-color: theme.$light-bg-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-icon {
+  height: 1.8rem;
+  width: 1.8rem;
+  border-radius: 50%;
+  background-color: theme.$light-bg-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba($color: #000000, $alpha: 0.5);
+  font-size: 1.2rem;
+}
+
+p {
+  margin: 0;
+}

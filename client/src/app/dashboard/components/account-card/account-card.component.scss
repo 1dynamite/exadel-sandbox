@@ -41,7 +41,18 @@ $secondary-lighter: mat.get-color-from-palette(
 .column-2 {
   flex: 1 1 0;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.info {
+  color: rgba($color: white, $alpha: 0.7);
+  transition: 0.3s;
+}
+
+.info:hover {
+  color: rgba($color: white, $alpha: 1);
 }
 
 .name {

@@ -1,0 +1,66 @@
+<div class="title">
+  <h1 mat-dialog-title>Transaction Information</h1>
+  <div class="title-actions">
+    <div class="left">
+      <div>
+        <button mat-icon-button (click)="openEditDialog()">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+      <div>
+        <button mat-icon-button (click)="openDeleteDialog()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="right">
+      <button mat-icon-button (click)="onNoClick()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+<div mat-dialog-content class="fields-container">
+  <div class="expense-bar">
+    <div class="left">
+      <div class="arrow-down">
+        <mat-icon class="arrow-icon">arrow_downward</mat-icon>
+      </div>
+      Expenses
+    </div>
+    <div class="expense-number"><h2>-650.00$</h2></div>
+  </div>
+  <div>
+    <h2>Flat rent for March</h2>
+  </div>
+
+  <div class="chips">
+    <mat-chip-list aria-label="Categories">
+      <mat-chip>One fish</mat-chip>
+      <mat-chip>Two fish</mat-chip>
+      <mat-chip>Three fish</mat-chip>
+      <mat-chip>Four fish</mat-chip>
+    </mat-chip-list>
+  </div>
+
+  <div class="field">
+    <div class="key"><p>Date:</p></div>
+    <div class="value">
+      <p>12/04/2022</p>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="key"><p>Payee:</p></div>
+    <div class="value">
+      <p>John Smith</p>
+    </div>
+  </div>
+
+  <div class="field-last">
+    <div class="key"><p>Description:</p></div>
+    <div class="value">
+      <p>{{ "Some description" }}</p>
+    </div>
+  </div>
+</div>

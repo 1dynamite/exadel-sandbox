@@ -5,16 +5,17 @@
     </div>
     <div class="accounts-container">
       <app-account-card
-        [selected]="true"
-        [name]="'Debit Card'"
-        [balance]="'5,356.18'"
-        [symbol]="'&#x24;'"
-      ></app-account-card>
-      <app-account-card
-        [selected]="false"
-        [name]="'Credit Card'"
-        [balance]="'815.60'"
-        [symbol]="'&#x20AC;'"
+        *ngFor="let account of user.accounts"
+        [user]="user"
+        [account]="account"
+        [selected]="selectedAccount?._id === account._id"
+        [id]="account._id"
+        [name]="account.title"
+        [balance]="account.balance"
+        [symbol]="account.currency.symbol"
+        (clickEvent)="onClickCard($event)"
+        (editAccountEvent)="editAccount($event)"
+        (deleteAccountEvent)="deleteAccount($event)"
       ></app-account-card>
     </div>
   </div>
@@ -23,7 +24,11 @@
       <app-nav-bar-main></app-nav-bar-main>
     </div>
     <div class="transactions-container">
-      <app-transactions-section></app-transactions-section>
+      <app-transactions-section
+        *ngIf="selectedAccount"
+        [transactions]="transactions"
+        [symbol]="selectedAccount.currency.symbol"
+      ></app-transactions-section>
     </div>
   </div>
   <div class="column-3">
@@ -33,7 +38,12 @@
       ></app-nav-bar-profile>
     </div>
     <div class="actions-container">
-      <app-actions-section></app-actions-section>
+      <app-actions-section
+        [user]="user"
+        [account]="selectedAccount"
+        (newAccountEvent)="addAccount($event)"
+        (newTransactionEvent)="addTransaction($event)"
+      ></app-actions-section>
     </div>
   </div>
 </div>

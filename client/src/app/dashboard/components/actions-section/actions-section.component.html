@@ -12,13 +12,13 @@
       </div>
       <p>Expense</p>
     </div>
-    <div class="top-action-bar">
+    <div class="top-action-bar" (click)="openDialogTransaction()">
       <div>
         <mat-icon class="add-icon">add</mat-icon>
       </div>
       <p>Add Transaction</p>
     </div>
-    <div class="top-action-bar">
+    <div class="top-action-bar" (click)="openDialog()">
       <div>
         <mat-icon class="add-icon">add</mat-icon>
       </div>
@@ -32,5 +32,7 @@
       </div>
       <p>Add Piggy Bank</p>
     </div>
+    <app-piggybank></app-piggybank>
+    <app-piggybank></app-piggybank>
   </div>
 </div>

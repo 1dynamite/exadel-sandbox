@@ -6,6 +6,7 @@ $secondary-default: mat.get-color-from-palette(
   theme.$palette-secondary,
   "default"
 );
+$primary-darker: mat.get-color-from-palette(theme.$palette-primary, 500);
 
 .root {
   height: 100%;
@@ -36,8 +37,8 @@ $secondary-default: mat.get-color-from-palette(
 }
 
 %arrow-container {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.8rem;
+  width: 1.8rem;
   border-radius: 50%;
   color: white;
   display: flex;
@@ -66,13 +67,18 @@ $secondary-default: mat.get-color-from-palette(
 .top-action-bar {
   background-color: $primary-lighter;
   color: white;
+  cursor: pointer;
+}
+
+.top-action-bar:hover {
+  background-color: rgba($color: $primary-darker, $alpha: 0.9);
 }
 
 .add-icon {
   color: rgba($color: #000000, $alpha: 0.5);
   background-color: theme.$light-bg-color;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.8rem;
+  width: 1.8rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;

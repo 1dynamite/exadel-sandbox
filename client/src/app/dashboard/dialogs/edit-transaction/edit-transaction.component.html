@@ -1,0 +1,66 @@
+<div class="title">
+  <div class="title-text">
+    <h1 mat-dialog-title>Edit Transaction</h1>
+  </div>
+  <button mat-icon-button (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content class="fields-container">
+  <section class="toggle-group">
+    <mat-button-toggle-group [formControl]="transactionType">
+      <mat-button-toggle value="expense"
+        ><div class="arrow-down">
+          <mat-icon class="arrow-icon">arrow_downward</mat-icon>
+        </div>
+        Expense</mat-button-toggle
+      >
+      <mat-button-toggle value="income"
+        ><div class="arrow-up">
+          <mat-icon class="arrow-icon">arrow_upward</mat-icon>
+        </div>
+        Income</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+  </section>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input matInput />
+  </mat-form-field>
+
+  <app-chips-autocomplete></app-chips-autocomplete>
+
+  <mat-form-field floatLabel="always" appearance="fill">
+    <mat-label>Amount</mat-label>
+    <input
+      matInput
+      [inputMask]="currencyInputMask"
+      [formControl]="amount"
+      placeholder="$ 0.00"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Payment date</mat-label>
+    <input matInput [matDatepicker]="picker" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Payee</mat-label>
+    <input matInput />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="actions">
+  <button class="save" mat-button (click)="onClickSave()" cdkFocusInitial>
+    Save
+  </button>
+</div>

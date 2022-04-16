@@ -4,13 +4,22 @@
     [ngClass]="{ 'card-disabled': !(selected || hoveredOn) }"
     (mouseover)="onMouseOver()"
     (mouseout)="onMouseOut()"
+    (click)="onClick()"
   >
     <div class="column-1">
       <p class="name">{{ name }}</p>
-      <p class="balance">{{ balance }}</p>
+      <p class="balance">{{ balance | number: "1.2-2" }}</p>
     </div>
     <div class="column-2">
       <app-symbol [symbol]="symbol"></app-symbol>
+      <div *ngIf="selected" (click)="openDialog()">
+        <mat-icon
+          matTooltip="See Details"
+          matTooltipPosition="below"
+          class="info"
+          >info</mat-icon
+        >
+      </div>
     </div>
   </div>
 </div>
