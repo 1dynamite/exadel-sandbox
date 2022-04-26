@@ -65,3 +65,7 @@ $secondary-default: mat.get-color-from-palette(
 .toggle-group {
   margin-bottom: 1rem;
 }
+
+.title-field-input {
+  text-overflow: ellipsis;
+}

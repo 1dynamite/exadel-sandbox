@@ -9,12 +9,24 @@
 <div mat-dialog-content class="fields-container">
   <mat-form-field appearance="fill">
     <mat-label>Title</mat-label>
-    <input matInput [(ngModel)]="title" />
+    <input
+      matInput
+      class="title-field-input"
+      [formControl]="title"
+      [matTooltip]="title.value"
+    />
+    <mat-error *ngIf="title.invalid">
+      {{ getTitleErrorMessage() }}
+    </mat-error>
   </mat-form-field>
+
   <mat-form-field appearance="fill">
-    <mat-select [(value)]="selected">
+    <mat-select [formControl]="selected">
       <ng-container *ngIf="currencies">
-        <mat-option *ngFor="let currency of currencies" [value]="currency._id">
+        <mat-option
+          *ngFor="let currency of currencies.value"
+          [value]="currency._id"
+        >
           {{ currency.name + " " }}
           (<span [innerHTML]="currency.symbol"></span>)
         </mat-option>
@@ -23,11 +35,17 @@
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Description</mat-label>
-    <textarea matInput [(ngModel)]="description"></textarea>
+    <textarea matInput [formControl]="description"></textarea>
   </mat-form-field>
 </div>
 <div mat-dialog-actions class="actions">
-  <button class="save" mat-button (click)="onClickSave()" cdkFocusInitial>
+  <button mat-stroked-button (click)="onNoClick()">Cancel</button>
+  <button
+    [disabled]="saveDisabled"
+    [ngClass]="{ save: !saveDisabled }"
+    mat-flat-button
+    (click)="onClickSave()"
+  >
     Save
   </button>
 </div>

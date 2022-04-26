@@ -13,9 +13,21 @@ export class TransactionsService {
 
   getTransactions(
     userId: string,
-    accountId: string
+    accountId: string,
+    query?: {
+      transactionType: 'expense' | 'income' | null;
+      sortOrder: 'receivalDate' | 'createdAt';
+    }
   ): Observable<Transaction[]> | Observable<never> {
-    const url = `/api/users/${userId}/accounts/${accountId}/transactions`;
+    let patch = '';
+    if (query && query.transactionType) {
+      patch += '?transactionType=' + query.transactionType;
+
+      if (query.sortOrder) patch += '&sortOrder=' + query.sortOrder;
+    } else if (query && query.sortOrder)
+      patch += '?sortOrder=' + query.sortOrder;
+
+    const url = `/api/users/${userId}/accounts/${accountId}/transactions${patch}`;
 
     const res = this.http.get<Transaction[]>(url).pipe(
       catchError((error: HttpErrorResponse) => {

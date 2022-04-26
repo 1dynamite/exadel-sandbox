@@ -17,6 +17,11 @@ import { InputMaskModule } from '@ngneat/input-mask';
 import { EditTransactionComponent } from './edit-transaction/edit-transaction.component';
 import { DeleteTransactionComponent } from './delete-transaction/delete-transaction.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { LogoutConfirmationComponent } from './logout-confirmation/logout-confirmation.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarComponent } from './shared/snackbar/snackbar.component';
+import { CurrencyPopupComponent } from './currency-popup/currency-popup.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +34,9 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     ReadTransactionComponent,
     EditTransactionComponent,
     DeleteTransactionComponent,
+    LogoutConfirmationComponent,
+    SnackbarComponent,
+    CurrencyPopupComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +47,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MatMomentDateModule,
     MatButtonToggleModule,
     InputMaskModule,
+    MatTooltipModule,
+    MatSnackBarModule,
   ],
   exports: [AddAccountComponent],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],

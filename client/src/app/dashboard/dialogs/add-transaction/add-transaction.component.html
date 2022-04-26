@@ -26,13 +26,24 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Title</mat-label>
-    <input matInput [formControl]="title" />
+    <input
+      matInput
+      class="title-field-input"
+      [formControl]="title"
+      [matTooltip]="title.value"
+    />
+    <mat-error *ngIf="title.invalid">
+      {{ getTitleErrorMessage() }}
+    </mat-error>
   </mat-form-field>
 
   <app-chips-autocomplete
     [fruits]="categories"
+    [allFruits]="categoriesAll"
     (addFruitEvent)="addCategory($event)"
     (removeFruitEvent)="removeCategory($event)"
+    (allFruitsAddEvent)="allFruitsAddEvent($event)"
+    (allFruitsDeleteEvent)="allFruitsDeleteEvent($event)"
   ></app-chips-autocomplete>
 
   <mat-form-field floatLabel="always" appearance="fill">
@@ -42,6 +53,7 @@
       [inputMask]="currencyInputMask"
       [formControl]="amount"
       placeholder="$ 0.00"
+      required
     />
   </mat-form-field>
 
@@ -54,6 +66,7 @@
       [formControl]="date"
     />
     <mat-hint>DD/MM/YYYY</mat-hint>
+    <mat-error>You should pick a date</mat-error>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
@@ -69,7 +82,12 @@
   </mat-form-field>
 </div>
 <div mat-dialog-actions class="actions">
-  <button class="save" mat-button (click)="onClickSave()" cdkFocusInitial>
+  <button
+    [disabled]="saveDisabled"
+    [ngClass]="{ save: !saveDisabled }"
+    mat-flat-button
+    (click)="onClickSave()"
+  >
     Save
   </button>
 </div>

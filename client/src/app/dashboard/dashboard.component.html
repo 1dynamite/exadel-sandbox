@@ -1,4 +1,9 @@
-<div class="root" *ngIf="user">
+<div
+  class="root"
+  *ngIf="user"
+  (click)="onDashboardClick($event)"
+  id="dashboard"
+>
   <div class="column-1">
     <div class="logo-container">
       <p class="logo">Budgetify</p>
@@ -25,16 +30,26 @@
     </div>
     <div class="transactions-container">
       <app-transactions-section
+        [filterSelected]="filterSelected"
+        [sortSelected]="sortSelected"
+        (filterSelectedEvent)="onFilterClick($event)"
+        (sortSelectedEvent)="onSortClick($event)"
         *ngIf="selectedAccount"
         [transactions]="transactions"
         [symbol]="selectedAccount.currency.symbol"
+        [account]="selectedAccount"
+        [user]="user"
+        (deleteTransactionEvent)="deleteTransaction($event)"
+        (editTransactionEvent)="editTransaction($event)"
       ></app-transactions-section>
     </div>
   </div>
   <div class="column-3">
     <div class="profile">
       <app-nav-bar-profile
+        [dashboardClickToggle]="dashboardClickToggle"
         [firstName]="user.name.firstName"
+        (logoutEvent)="logout()"
       ></app-nav-bar-profile>
     </div>
     <div class="actions-container">

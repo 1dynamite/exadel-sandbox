@@ -7,6 +7,7 @@
   border-radius: theme.$border-radius;
   padding: 0.8rem 1rem;
   gap: 1rem;
+  cursor: pointer;
 }
 
 .column-1 {
@@ -40,6 +41,11 @@
 .amount {
   font-size: larger;
   color: theme.$palette-warn;
+}
+
+.amount-income {
+  font-size: larger;
+  color: theme.$palette-success;
 }
 
 .bottom-details {

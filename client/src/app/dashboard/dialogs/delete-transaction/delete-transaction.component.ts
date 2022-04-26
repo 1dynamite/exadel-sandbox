@@ -1,14 +1,16 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, EventEmitter, Inject, Input } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { AccountService } from '../../services/account.service';
-import { Account, ReturnType } from '../../models';
+import { Account, ReturnType, Transaction } from '../../models';
 import { User } from 'src/app/user';
 
 interface DialogData {
   user: User;
   account: Account;
+  transaction: Transaction;
+  deleteTransactionEvent: EventEmitter<Transaction>;
 }
 
 @Component({
@@ -35,17 +37,6 @@ export class DeleteTransactionComponent {
       accountId: this.data.account._id,
     };
 
-    const res = this.accountService.deleteAccount(params);
-
-    const myObserver = {
-      next: (res: ReturnType) => {
-        this.dialogRef.close(res.account);
-      },
-      error: (err: HttpErrorResponse) => {
-        console.error(err);
-      },
-    };
-
-    res.subscribe(myObserver);
+    this.dialogRef.close(this.data.transaction);
   }
 }

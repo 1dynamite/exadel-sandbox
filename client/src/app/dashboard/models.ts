@@ -24,6 +24,7 @@ export interface AddAccount {
 export interface ReturnType {
   message: string;
   account: Account;
+  field?: string;
 }
 
 export interface EditAccount {
@@ -58,7 +59,7 @@ export interface Transaction {
   type: 'expense' | 'income';
   title: string;
   receivalDate: string;
-  categories: Category[];
+  categories: string[];
   amount: number;
   payee: string;
   description: string;

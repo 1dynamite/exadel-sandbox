@@ -22,45 +22,58 @@
 </div>
 <div mat-dialog-content class="fields-container">
   <div class="expense-bar">
-    <div class="left">
+    <div class="left" *ngIf="data.transaction.type === 'expense'">
       <div class="arrow-down">
         <mat-icon class="arrow-icon">arrow_downward</mat-icon>
       </div>
       Expenses
     </div>
-    <div class="expense-number"><h2>-650.00$</h2></div>
+    <div class="left" *ngIf="data.transaction.type === 'income'">
+      <div class="arrow-up">
+        <mat-icon class="arrow-icon">arrow_upward</mat-icon>
+      </div>
+      Income
+    </div>
+    <div
+      [ngClass]="{
+        'expense-number': data.transaction.type === 'expense',
+        'expense-number-income': data.transaction.type === 'income'
+      }"
+    >
+      <h2>
+        {{ data.transaction.amount | number: "1.2-2"
+        }}{{ " " + data.account.currency.symbol }}
+      </h2>
+    </div>
   </div>
   <div>
-    <h2>Flat rent for March</h2>
+    <h2>{{ data.transaction.title }}</h2>
   </div>
 
   <div class="chips">
     <mat-chip-list aria-label="Categories">
-      <mat-chip>One fish</mat-chip>
-      <mat-chip>Two fish</mat-chip>
-      <mat-chip>Three fish</mat-chip>
-      <mat-chip>Four fish</mat-chip>
+      <mat-chip *ngFor="let it of categories">{{ it }}</mat-chip>
     </mat-chip-list>
   </div>
 
   <div class="field">
     <div class="key"><p>Date:</p></div>
     <div class="value">
-      <p>12/04/2022</p>
+      <p>{{ data.transaction.receivalDate | date: "dd/MM/yy" }}</p>
     </div>
   </div>
 
   <div class="field">
     <div class="key"><p>Payee:</p></div>
     <div class="value">
-      <p>John Smith</p>
+      <p>{{ data.transaction.payee }}</p>
     </div>
   </div>
 
   <div class="field-last">
     <div class="key"><p>Description:</p></div>
     <div class="value">
-      <p>{{ "Some description" }}</p>
+      <p>{{ data.transaction.description }}</p>
     </div>
   </div>
 </div>

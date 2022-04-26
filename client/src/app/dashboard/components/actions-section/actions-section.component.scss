@@ -89,3 +89,18 @@ $primary-darker: mat.get-color-from-palette(theme.$palette-primary, 500);
 p {
   margin: 0;
 }
+
+.disable {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.disable:hover {
+  background-color: $primary-lighter;
+  border-radius: theme.$border-radius;
+}
+
+.disable-sort {
+  opacity: 0.4;
+  cursor: default;
+}

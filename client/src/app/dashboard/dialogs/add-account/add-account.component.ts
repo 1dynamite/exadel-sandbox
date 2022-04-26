@@ -1,10 +1,19 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  EventEmitter,
+  Inject,
+  OnInit,
+} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { AccountService } from '../../services/account.service';
 import { Account, ReturnType } from '../../models';
 import { User } from 'src/app/user';
+import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
+import { SnackbarComponent } from '../shared/snackbar/snackbar.component';
 
 interface Currency {
   _id: string;
@@ -23,25 +32,51 @@ interface DialogData {
   styleUrls: ['./add-account.component.scss'],
 })
 export class AddAccountComponent implements OnInit {
-  title: string = '';
+  title = new FormControl('', [
+    Validators.required,
+    Validators.maxLength(128),
+    Validators.pattern(/^(((\w|\d|\.|\s|,)*)(\w|\d|\s)$)$/),
+  ]);
 
-  currencies: Currency[] | null = null;
+  currencies = new FormControl([]);
 
-  selected: string = '';
+  selected = new FormControl('');
 
-  description: string = '';
+  description = new FormControl('', [Validators.maxLength(256)]);
+
+  saveDisabled: boolean = true;
 
   constructor(
     public dialogRef: MatDialogRef<AddAccountComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private accountService: AccountService
-  ) {}
+    private accountService: AccountService,
+    private _snackBar: MatSnackBar
+  ) {
+    this.title.statusChanges.subscribe((value) => {
+      this.saveDisabled =
+        value === 'INVALID' ||
+        this.description.status === 'INVALID' ||
+        this.currencies.status === 'INVALID';
+    });
+    this.description.statusChanges.subscribe((value) => {
+      this.saveDisabled =
+        value === 'INVALID' ||
+        this.title.status === 'INVALID' ||
+        this.currencies.status === 'INVALID';
+    });
+    this.currencies.statusChanges.subscribe((value) => {
+      this.saveDisabled =
+        value === 'INVALID' ||
+        this.description.status === 'INVALID' ||
+        this.title.status === 'INVALID';
+    });
+  }
 
   ngOnInit() {
     const myObserver = {
       next: (res: { currencies: Currency[] }) => {
-        this.currencies = res.currencies;
-        this.selected = this.currencies[0]._id;
+        this.currencies.setValue(res.currencies);
+        this.selected.setValue(this.currencies.value[0]._id);
       },
       error: (err: HttpErrorResponse) => {
         console.error(err);
@@ -51,21 +86,46 @@ export class AddAccountComponent implements OnInit {
     this.accountService.getAllCurrencies().subscribe(myObserver);
   }
 
+  getTitleErrorMessage() {
+    if (this.title.hasError('required')) return 'Title is required';
+
+    if (this.title.hasError('maxlength'))
+      return 'Maximum number of characters reached';
+
+    if (this.title.hasError('pattern'))
+      return 'Title cannot contain special symbols and trailing dots';
+
+    if (this.title.hasError('notUnique'))
+      return 'Account title should be unique';
+
+    return '';
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  onClickSave(): void {
-    if (!this.currencies) return;
+  openSnackBar() {
+    this._snackBar.openFromComponent(SnackbarComponent, {
+      duration: 5000,
+      panelClass: ['white-background-snackbar'],
+      data: { message: 'The account created!' },
+    });
+  }
 
-    const currency = this.currencies.find((elem) => elem._id === this.selected);
+  onClickSave(): void {
+    if (!this.currencies.value) return;
+
+    const currency = this.currencies.value.find(
+      (elem: Currency) => elem._id === this.selected.value
+    );
 
     if (currency === undefined) return;
 
     const data = {
-      title: this.title,
+      title: this.title.value,
       currency: currency,
-      description: this.description,
+      description: this.description.value,
     };
 
     if (data && this.data.user) {
@@ -74,9 +134,10 @@ export class AddAccountComponent implements OnInit {
       const myObserver = {
         next: (res: ReturnType) => {
           this.dialogRef.close(res.account);
+          this.openSnackBar();
         },
         error: (err: HttpErrorResponse) => {
-          console.error(err);
+          this.title.setErrors({ notUnique: true });
         },
       };
 

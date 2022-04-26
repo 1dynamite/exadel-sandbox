@@ -87,7 +87,12 @@ $secondary-default: mat.get-color-from-palette(
   color: theme.$palette-warn;
 }
 
-.expense-number h2 {
+.expense-number-income {
+  color: theme.$palette-success;
+}
+
+.expense-number h2,
+.expense-number-income h2 {
   font-weight: normal;
   margin: 0;
 }

@@ -1,7 +1,57 @@
 <div class="root">
   <app-search-bar></app-search-bar>
+  <div class="sort-filter-root">
+    <div class="sort-root">
+      <mat-icon>sort</mat-icon>
+      <p class="text" [matMenuTriggerFor]="menu">
+        {{
+          sortSelected === "receivalDate"
+            ? "Date of payment"
+            : "Date of creation"
+        }}
+      </p>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onSortClick('receivalDate')">
+          Date of payment
+        </button>
+        <button mat-menu-item (click)="onSortClick('createdAt')">
+          Date of creation
+        </button>
+      </mat-menu>
+    </div>
+    <div class="filter-root">
+      <div
+        (click)="onFilterClick('income')"
+        [ngClass]="{
+          'arrow-bar': true,
+          disable: filterSelected === null || filterSelected !== 'income'
+        }"
+      >
+        <div class="arrow-up">
+          <mat-icon class="arrow-icon">arrow_upward</mat-icon>
+        </div>
+        <p>Income</p>
+      </div>
+      <div
+        (click)="onFilterClick('expense')"
+        [ngClass]="{
+          'arrow-bar': true,
+          disable: filterSelected === null || filterSelected !== 'expense'
+        }"
+      >
+        <div class="arrow-down">
+          <mat-icon class="arrow-icon">arrow_downward</mat-icon>
+        </div>
+        <p>Expense</p>
+      </div>
+    </div>
+  </div>
   <app-transactions
     [symbol]="symbol"
     [transactions]="transactions"
+    [account]="account"
+    [user]="user"
+    (deleteTransactionEvent)="onDelete($event)"
+    (editTransactionEvent)="onEdit($event)"
   ></app-transactions>
 </div>

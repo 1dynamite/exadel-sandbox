@@ -23,6 +23,10 @@ $secondary-default: mat.get-color-from-palette(
   flex-grow: 1;
 }
 
+.title-field-input {
+  text-overflow: ellipsis;
+}
+
 .actions {
   display: flex;
   justify-content: flex-end;

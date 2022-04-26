@@ -18,3 +18,8 @@ div.mat-form-field-outline {
   background-color: theme.$light-bg-color;
   border-radius: theme.$border-radius;
 }
+
+.white-background-snackbar {
+  background-color: theme.$palette-success;
+  position: relative;
+}

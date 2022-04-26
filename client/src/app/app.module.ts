@@ -24,6 +24,9 @@ import { ActionsSectionComponent } from './dashboard/components/actions-section/
 import { PiggybankComponent } from './dashboard/components/actions-section/piggybank/piggybank.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { DialogsModule } from './dashboard/dialogs/dialogs.module';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +54,8 @@ import { DialogsModule } from './dashboard/dialogs/dialogs.module';
     MatProgressBarModule,
     DialogsModule,
     MatTooltipModule,
+    MatListModule,
+    MatMenuModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

@@ -13,6 +13,10 @@ $secondary-default: mat.get-color-from-palette(
   gap: 0.8rem;
 }
 
+.title-field-input {
+  text-overflow: ellipsis;
+}
+
 .title {
   display: flex;
   justify-content: center;

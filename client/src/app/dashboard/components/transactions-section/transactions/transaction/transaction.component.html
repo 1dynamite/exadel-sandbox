@@ -1,11 +1,18 @@
-<div class="root" *ngIf="transaction">
+<div class="root" *ngIf="transaction" (click)="openDialog()">
   <div class="column-1">
-    <h3 class="category">{{ "Food" }}</h3>
+    <h3 class="category">
+      {{ categories.length !== 0 ? categories[0].title : "" }}
+    </h3>
   </div>
   <div class="column-2">
     <div class="top-title">
       <p class="title">{{ transaction.title }}</p>
-      <p class="amount">
+      <p
+        [ngClass]="{
+          amount: transaction.type === 'expense',
+          'amount-income': transaction.type === 'income'
+        }"
+      >
         {{ transaction.amount.toString() | number: "1.2-2" }}
         <span [innerHTML]="symbol"></span>
       </p>
@@ -25,11 +32,13 @@
       </div>
       <div>
         <p class="mat-caption detail">
-          {{ transaction.receivalDate | date: "shortDate" }}
+          {{ transaction.receivalDate | date: "dd/MM/yy" }}
         </p>
-        <!-- <div class="dot"></div> -->
+        <div class="dot"></div>
       </div>
-      <!-- <div><p class="mat-caption detail">Sara Smith</p></div> -->
+      <div>
+        <p class="mat-caption detail">{{ transaction.payee }}</p>
+      </div>
     </div>
   </div>
 </div>

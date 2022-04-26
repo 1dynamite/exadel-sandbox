@@ -5,6 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AccountService } from '../../services/account.service';
 import { Account, ReturnType } from '../../models';
 import { User } from 'src/app/user';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
+import { SnackbarComponent } from '../shared/snackbar/snackbar.component';
 
 interface DialogData {
   user: User;
@@ -20,11 +22,20 @@ export class DeleteAccountComponent {
   constructor(
     public dialogRef: MatDialogRef<DeleteAccountComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private _snackBar: MatSnackBar
   ) {}
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  openSnackBar() {
+    this._snackBar.openFromComponent(SnackbarComponent, {
+      duration: 5000,
+      panelClass: ['white-background-snackbar'],
+      data: { message: 'The account successfully deleted!' },
+    });
   }
 
   onClickDelete(): void {
@@ -40,6 +51,7 @@ export class DeleteAccountComponent {
     const myObserver = {
       next: (res: ReturnType) => {
         this.dialogRef.close(res.account);
+        this.openSnackBar();
       },
       error: (err: HttpErrorResponse) => {
         console.error(err);

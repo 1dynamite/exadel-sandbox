@@ -9,12 +9,6 @@ $secondary-default: mat.get-color-from-palette(
 
 .fields-container {
   display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.title-field-input {
-  text-overflow: ellipsis;
 }
 
 .title {
@@ -32,7 +26,7 @@ $secondary-default: mat.get-color-from-palette(
   justify-content: flex-end;
 }
 
-.save {
+.no {
   background-color: $primary-400;
   color: white;
 }
