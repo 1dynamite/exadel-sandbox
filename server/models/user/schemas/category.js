@@ -1,10 +1,19 @@
 const mongoose = require("mongoose");
 
 const categorySchema = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
-    required: "Category name is required",
+    required: "Category title is required",
   },
+  type: {
+    type: String,
+    required: [true, "Category type is required"],
+    enum: {
+      values: ["expense", "income"],
+      message: "'{VALUE}' type is not supported",
+    },
+  },
+  transactions: [mongoose.ObjectId],
 });
 
 module.exports = categorySchema;

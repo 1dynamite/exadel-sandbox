@@ -1,7 +1,6 @@
 const express = require("express");
 const handler = require("../../../handlers/users/accounts/accounts");
-const expensesRouter = require("./expenses/expenses");
-const incomesRouter = require("./incomes/incomes");
+const transactionsRouter = require("./transactions/transactions");
 const limitExpensesRouter = require("./limit-expenses/limit-expenses");
 const obligatoryPaymentsRouter = require("./obligatory-payments/obligatory-payments");
 const piggybanksRouter = require("./piggybanks/piggybanks");
@@ -17,8 +16,7 @@ router
   .put(handler.update)
   .delete(handler.remove);
 
-router.use("/:accountId/expenses", expensesRouter);
-router.use("/:accountId/incomes", incomesRouter);
+router.use("/:accountId/transactions", transactionsRouter);
 router.use("/:accountId/limit-expenses", limitExpensesRouter);
 router.use("/:accountId/obligatory-payments", obligatoryPaymentsRouter);
 router.use("/:accountId/piggybanks", piggybanksRouter);

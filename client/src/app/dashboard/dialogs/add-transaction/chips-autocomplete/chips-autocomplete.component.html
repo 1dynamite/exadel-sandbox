@@ -1,0 +1,32 @@
+<mat-form-field
+  [ngClass]="{
+    'example-chip-list': true
+  }"
+  appearance="fill"
+>
+  <mat-label>Categories</mat-label>
+  <mat-chip-list #chipList aria-label="Categories" required>
+    <mat-chip *ngFor="let fruit of fruits.value" (removed)="remove(fruit)">
+      {{ fruit }}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+    <input
+      (blur)="onChipBlur()"
+      placeholder="New category..."
+      #fruitInput
+      [formControl]="fruitCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)"
+    />
+  </mat-chip-list>
+  <mat-error>At least one category is required</mat-error>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+      {{ fruit }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

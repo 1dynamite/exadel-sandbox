@@ -2,61 +2,30 @@ const mongoose = require("mongoose");
 const currencySchema = require("./currency");
 
 const accountSchema = new mongoose.Schema({
-  incomesId: mongoose.ObjectId,
-  expensesId: mongoose.ObjectId,
+  transactions: mongoose.ObjectId,
+
+  title: {
+    type: String,
+    required: [true, "Account title is required"],
+    maxlength: [128, "Title cannot be longer than 128 characaters"],
+    match: [
+      /^(((\w|\d|\.|\s|,)*)(\w|\d|\s)$)$/,
+      "Title should not contain symbols and trailing dots",
+    ],
+  },
 
   currency: {
     type: currencySchema,
-    required: "Currency is required",
+    required: [true, "Currency is required"],
   },
+
+  balance: {
+    type: Number,
+    required: [true, "Balance is required"],
+    default: 0,
+  },
+
+  description: String,
 });
-
-const getTotalIncome = function () {
-  const reducer = (prev, current) => prev + current.amount;
-
-  const total = this.incomes.reduce(reducer, 0);
-
-  return total;
-};
-
-const getTotalExpense = function () {
-  const reducer = (prev, current) => prev + current.amount;
-
-  const total = this.expenses.reduce(reducer, 0);
-
-  return total;
-};
-
-const getTotalExpenseByCategory = function (val) {
-  const reducer = (prev, current) => {
-    if (current.categoryId === val) return prev + current.amount;
-
-    return prev;
-  };
-
-  const total = this.expenses.reduce(reducer, 0);
-
-  return total;
-};
-
-const getTotalIncomeByCategory = function (val) {
-  const reducer = (prev, current) => {
-    if (current.categoryId === val) return prev + current.amount;
-
-    return prev;
-  };
-
-  const total = this.incomes.reduce(reducer, 0);
-
-  return total;
-};
-
-accountSchema.virtual("totalIncome").get(getTotalIncome);
-
-accountSchema.virtual("totalExpense").get(getTotalExpense);
-
-accountSchema.virtual("totalExpenseByCategory").get(getTotalExpenseByCategory);
-
-accountSchema.virtual("totalIncomeByCategory").get(getTotalIncomeByCategory);
 
 module.exports = accountSchema;

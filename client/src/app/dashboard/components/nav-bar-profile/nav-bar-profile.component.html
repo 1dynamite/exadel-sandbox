@@ -1,4 +1,9 @@
 <div class="profile">
   <mat-icon>person</mat-icon>
-  <p class="username">{{ firstName }}</p>
+  <p class="username" (click)="toggleMenu($event)">
+    {{ firstName }}
+  </p>
+  <mat-action-list *ngIf="menuOpen" class="menu" id="navBarProfile">
+    <button class="text" mat-list-item (click)="logout()">Log out</button>
+  </mat-action-list>
 </div>

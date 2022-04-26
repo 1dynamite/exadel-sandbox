@@ -1,15 +1,16 @@
 interface Category {
-  name: string;
+  title: string;
+  type: string;
+  _id: string;
 }
 
 export interface User {
-  _id: number;
+  _id: string;
   name: {
     firstName: string;
     lastName: string;
   };
   email: string;
   accounts: any;
-  incomeCategories: Category[];
-  expenseCategories: Category[];
+  categories: [Category];
 }

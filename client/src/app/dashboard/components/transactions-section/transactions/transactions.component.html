@@ -1,5 +1,16 @@
 <div class="root">
+  <!-- <app-transaction></app-transaction>
   <app-transaction></app-transaction>
-  <app-transaction></app-transaction>
-  <app-transaction></app-transaction>
+  <app-transaction></app-transaction> -->
+  <ng-container *ngIf="transactions">
+    <app-transaction
+      *ngFor="let transaction of transactions"
+      [transaction]="transaction"
+      [account]="account"
+      [user]="user"
+      [symbol]="symbol"
+      (deleteTransactionEvent)="onDelete($event)"
+      (editTransactionEvent)="onEdit($event)"
+    ></app-transaction>
+  </ng-container>
 </div>

@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login/login.module';
@@ -21,6 +22,10 @@ import { SearchBarModule } from './dashboard/components/transactions-section/sea
 import { TransactionComponent } from './dashboard/components/transactions-section/transactions/transaction/transaction.component';
 import { ActionsSectionComponent } from './dashboard/components/actions-section/actions-section.component';
 import { PiggybankComponent } from './dashboard/components/actions-section/piggybank/piggybank.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { DialogsModule } from './dashboard/dialogs/dialogs.module';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -46,6 +51,11 @@ import { PiggybankComponent } from './dashboard/components/actions-section/piggy
     SearchBarModule,
     MatIconModule,
     MatButtonModule,
+    MatProgressBarModule,
+    DialogsModule,
+    MatTooltipModule,
+    MatListModule,
+    MatMenuModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

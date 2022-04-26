@@ -1,17 +1,14 @@
 const mongoose = require("mongoose");
 
-const currencySchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: "Currency name is required",
-    },
-    symbol: {
-      type: String,
-      required: "Currency symbol is required",
-    },
+const currencySchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: "Currency name is required",
   },
-  { _id: false }
-);
+  symbol: {
+    type: String,
+    required: "Currency symbol is required",
+  },
+});
 
 module.exports = currencySchema;

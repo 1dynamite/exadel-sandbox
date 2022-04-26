@@ -1,0 +1,53 @@
+<div class="title">
+  <h1 mat-dialog-title>Account Information</h1>
+  <div class="title-actions">
+    <div class="left">
+      <div>
+        <button mat-icon-button (click)="openEditDialog()">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+      <div>
+        <button mat-icon-button (click)="openDeleteDialog()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="right">
+      <button mat-icon-button (click)="onNoClick()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+<div mat-dialog-content class="fields-container">
+  <div class="field">
+    <div class="key"><p>Title:</p></div>
+    <div class="value">
+      <p>{{ this.data.account.title }}</p>
+    </div>
+  </div>
+  <div class="field">
+    <div class="key"><p>Balance:</p></div>
+    <div class="value">
+      <p>{{ this.data.account.balance | number: "1.2-2" }}</p>
+    </div>
+  </div>
+  <div class="field">
+    <div class="key"><p>Curreny:</p></div>
+    <div class="value">
+      <p>
+        {{ this.data.account.currency.name + " " }}(<span
+          [innerHTML]="this.data.account.currency.symbol"
+        ></span
+        >)
+      </p>
+    </div>
+  </div>
+  <div class="field-last">
+    <div class="key"><p>Description:</p></div>
+    <div class="value">
+      <p>{{ this.data.account.description }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="title">
+  <div class="title-text">
+    <h1 mat-dialog-title>
+      <mat-icon color="warn" class="error-outline">error_outline</mat-icon
+      >Change currency?
+    </h1>
+  </div>
+  <button mat-icon-button (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content class="fields-container">
+  <p>
+    Are you sure you want to change the currency? It will be changed in all
+    transactions, numbers will stay the same?
+  </p>
+</div>
+
+<div mat-dialog-actions class="actions">
+  <button mat-stroked-button (click)="onClickYes()">Yes</button>
+  <button class="no" mat-flat-button cdkFocusInitial (click)="onNoClick()">
+    No
+  </button>
+</div>

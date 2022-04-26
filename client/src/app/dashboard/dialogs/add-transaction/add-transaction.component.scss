@@ -1,0 +1,71 @@
+@use "@angular/material" as mat;
+@use "/src/constants" as theme;
+
+$primary-400: mat.get-color-from-palette(theme.$palette-primary, 400);
+$secondary-default: mat.get-color-from-palette(
+  theme.$palette-secondary,
+  "default"
+);
+
+.fields-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.title-field-input {
+  text-overflow: ellipsis;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.title-text {
+  flex-grow: 1;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.save {
+  background-color: $primary-400;
+  color: white;
+}
+
+%arrow-container {
+  height: 1.3rem;
+  width: 1.3rem;
+  border-radius: 50%;
+  color: white;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow-up {
+  @extend %arrow-container;
+
+  background-color: theme.$palette-success;
+}
+
+.arrow-down {
+  @extend %arrow-container;
+
+  background-color: theme.$palette-warn;
+}
+
+.arrow-icon {
+  height: max-content;
+  width: max-content;
+  font-size: 1rem;
+  margin-right: 0px;
+}
+
+.toggle-group {
+  margin-bottom: 1rem;
+}

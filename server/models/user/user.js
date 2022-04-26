@@ -25,7 +25,10 @@ const userSchema = new mongoose.Schema({
 
   role: {
     type: String,
-    enum: ["admin", "user"],
+    enum: {
+      values: ["admin", "user"],
+      message: "{VALUE} type is not supported",
+    },
     required: [true, "User role is required"],
   },
 
@@ -36,9 +39,7 @@ const userSchema = new mongoose.Schema({
 
   accounts: [accountSchema],
 
-  incomeCategories: [categorySchema],
-
-  expenseCategories: [categorySchema],
+  categories: [categorySchema],
 });
 
 const getFullName = function () {

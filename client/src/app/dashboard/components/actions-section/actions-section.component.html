@@ -1,36 +1,30 @@
 <div class="root">
   <div class="top-chunk">
-    <div class="arrows-bar">
-      <div class="arrow-up">
-        <mat-icon class="arrow-icon">arrow_upward</mat-icon>
-      </div>
-      <p>Income</p>
-    </div>
-    <div class="arrows-bar">
-      <div class="arrow-down">
-        <mat-icon class="arrow-icon">arrow_downward</mat-icon>
-      </div>
-      <p>Expense</p>
-    </div>
-    <div class="top-action-bar">
-      <div>
-        <mat-icon class="add-icon">add</mat-icon>
-      </div>
-      <p>Add Transaction</p>
-    </div>
-    <div class="top-action-bar">
+    <div class="top-action-bar" (click)="openDialog()">
       <div>
         <mat-icon class="add-icon">add</mat-icon>
       </div>
       <p>Add Account</p>
     </div>
+    <div
+      class="top-action-bar"
+      [ngClass]="{ disable: account === null }"
+      (click)="account !== null ? openDialogTransaction() : null"
+    >
+      <div>
+        <mat-icon class="add-icon">add</mat-icon>
+      </div>
+      <p>Add Transaction</p>
+    </div>
   </div>
   <div class="bottom-chunk">
-    <div class="top-action-bar">
+    <div class="top-action-bar" [ngClass]="{ disable: account === null }">
       <div>
         <mat-icon class="add-icon">add</mat-icon>
       </div>
       <p>Add Piggy Bank</p>
     </div>
+    <app-piggybank [ngClass]="{ disable: account === null }"></app-piggybank>
+    <app-piggybank [ngClass]="{ disable: account === null }"></app-piggybank>
   </div>
 </div>

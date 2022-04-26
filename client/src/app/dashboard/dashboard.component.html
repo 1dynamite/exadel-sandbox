@@ -1,20 +1,26 @@
-<div class="root" *ngIf="user">
+<div
+  class="root"
+  *ngIf="user"
+  (click)="onDashboardClick($event)"
+  id="dashboard"
+>
   <div class="column-1">
     <div class="logo-container">
       <p class="logo">Budgetify</p>
     </div>
     <div class="accounts-container">
       <app-account-card
-        [selected]="true"
-        [name]="'Debit Card'"
-        [balance]="'5,356.18'"
-        [symbol]="'&#x24;'"
-      ></app-account-card>
-      <app-account-card
-        [selected]="false"
-        [name]="'Credit Card'"
-        [balance]="'815.60'"
-        [symbol]="'&#x20AC;'"
+        *ngFor="let account of user.accounts"
+        [user]="user"
+        [account]="account"
+        [selected]="selectedAccount?._id === account._id"
+        [id]="account._id"
+        [name]="account.title"
+        [balance]="account.balance"
+        [symbol]="account.currency.symbol"
+        (clickEvent)="onClickCard($event)"
+        (editAccountEvent)="editAccount($event)"
+        (deleteAccountEvent)="deleteAccount($event)"
       ></app-account-card>
     </div>
   </div>
@@ -23,17 +29,36 @@
       <app-nav-bar-main></app-nav-bar-main>
     </div>
     <div class="transactions-container">
-      <app-transactions-section></app-transactions-section>
+      <app-transactions-section
+        [filterSelected]="filterSelected"
+        [sortSelected]="sortSelected"
+        (filterSelectedEvent)="onFilterClick($event)"
+        (sortSelectedEvent)="onSortClick($event)"
+        *ngIf="selectedAccount"
+        [transactions]="transactions"
+        [symbol]="selectedAccount.currency.symbol"
+        [account]="selectedAccount"
+        [user]="user"
+        (deleteTransactionEvent)="deleteTransaction($event)"
+        (editTransactionEvent)="editTransaction($event)"
+      ></app-transactions-section>
     </div>
   </div>
   <div class="column-3">
     <div class="profile">
       <app-nav-bar-profile
+        [dashboardClickToggle]="dashboardClickToggle"
         [firstName]="user.name.firstName"
+        (logoutEvent)="logout()"
       ></app-nav-bar-profile>
     </div>
     <div class="actions-container">
-      <app-actions-section></app-actions-section>
+      <app-actions-section
+        [user]="user"
+        [account]="selectedAccount"
+        (newAccountEvent)="addAccount($event)"
+        (newTransactionEvent)="addTransaction($event)"
+      ></app-actions-section>
     </div>
   </div>
 </div>

@@ -1,0 +1,38 @@
+@use "@angular/material" as mat;
+@use "/src/constants" as theme;
+
+$primary-400: mat.get-color-from-palette(theme.$palette-primary, 400);
+$secondary-default: mat.get-color-from-palette(
+  theme.$palette-secondary,
+  "default"
+);
+
+.fields-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.title-field-input {
+  text-overflow: ellipsis;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.title-text {
+  flex-grow: 1;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.save {
+  background-color: $primary-400;
+  color: white;
+}

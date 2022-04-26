@@ -1,0 +1,15 @@
+@use "@angular/material" as mat;
+@use "/src/constants" as theme;
+
+.example-pizza-party {
+  text-align: center;
+  margin: 0;
+  color: white;
+}
+
+.close {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.7rem;
+  cursor: pointer;
+}

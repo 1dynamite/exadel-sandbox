@@ -7,6 +7,7 @@
   border-radius: theme.$border-radius;
   padding: 0.8rem 1rem;
   gap: 1rem;
+  cursor: pointer;
 }
 
 .column-1 {
@@ -42,6 +43,11 @@
   color: theme.$palette-warn;
 }
 
+.amount-income {
+  font-size: larger;
+  color: theme.$palette-success;
+}
+
 .bottom-details {
   display: flex;
 }
@@ -63,15 +69,24 @@
   margin: 0;
 }
 
-.trans-icon-container {
-  height: 1.5rem;
-  width: 1.5rem;
-  background-color: theme.$palette-warn;
+%trans-icon-container {
+  height: 1.8rem;
+  width: 1.8rem;
   border-radius: 50%;
   margin-right: 0.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.trans-icon-up {
+  @extend %trans-icon-container;
+  background-color: theme.$palette-success;
+}
+
+.trans-icon-down {
+  @extend %trans-icon-container;
+  background-color: theme.$palette-warn;
 }
 
 .trans-icon {

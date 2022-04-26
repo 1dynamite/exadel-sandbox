@@ -1,0 +1,50 @@
+<div class="title">
+  <div class="title-text">
+    <h1 mat-dialog-title>Edit Account</h1>
+  </div>
+
+  <button mat-icon-button (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content class="fields-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input
+      matInput
+      class="title-field-input"
+      [formControl]="title"
+      [matTooltip]="title.value"
+    />
+    <mat-error *ngIf="title.invalid">
+      {{ getTitleErrorMessage() }}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-select [formControl]="selected">
+      <ng-container *ngIf="currencies">
+        <mat-option
+          *ngFor="let currency of currencies.value"
+          [value]="currency._id"
+        >
+          {{ currency.name }}
+        </mat-option>
+      </ng-container>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput [formControl]="description"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="actions">
+  <button mat-stroked-button (click)="onNoClick()">Cancel</button>
+  <button
+    [disabled]="saveDisabled"
+    [ngClass]="{ save: !saveDisabled }"
+    mat-flat-button
+    (click)="onClickSave()"
+  >
+    Save
+  </button>
+</div>

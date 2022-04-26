@@ -1,25 +1,44 @@
-<div class="root">
+<div class="root" *ngIf="transaction" (click)="openDialog()">
   <div class="column-1">
-    <h3 class="category">Home</h3>
+    <h3 class="category">
+      {{ categories.length !== 0 ? categories[0].title : "" }}
+    </h3>
   </div>
   <div class="column-2">
     <div class="top-title">
-      <p class="title">Flat rent for March</p>
-      <p class="amount">-650.00$</p>
+      <p class="title">{{ transaction.title }}</p>
+      <p
+        [ngClass]="{
+          amount: transaction.type === 'expense',
+          'amount-income': transaction.type === 'income'
+        }"
+      >
+        {{ transaction.amount.toString() | number: "1.2-2" }}
+        <span [innerHTML]="symbol"></span>
+      </p>
     </div>
     <div class="bottom-details">
       <div>
-        <div class="trans-icon-container">
+        <div *ngIf="transaction.type === 'expense'" class="trans-icon-down">
           <mat-icon class="trans-icon">arrow_downward</mat-icon>
         </div>
-        <p class="mat-caption detail">Expenses</p>
+        <div *ngIf="transaction.type === 'income'" class="trans-icon-up">
+          <mat-icon class="trans-icon">arrow_upward</mat-icon>
+        </div>
+        <p class="mat-caption detail">
+          {{ transaction.type[0].toUpperCase() + transaction.type.slice(1) }}
+        </p>
         <div class="dot"></div>
       </div>
       <div>
-        <p class="mat-caption detail">28.02.2022</p>
+        <p class="mat-caption detail">
+          {{ transaction.receivalDate | date: "dd/MM/yy" }}
+        </p>
         <div class="dot"></div>
       </div>
-      <div><p class="mat-caption detail">Sara Smith</p></div>
+      <div>
+        <p class="mat-caption detail">{{ transaction.payee }}</p>
+      </div>
     </div>
   </div>
 </div>
