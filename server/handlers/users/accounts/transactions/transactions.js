@@ -11,20 +11,25 @@ const create = async (req, res) => {
     const newTransaction = {
       _id: new mongoose.Types.ObjectId(),
       title: req.body.title,
+      type: req.body.type,
       receivalDate: req.body.receivalDate,
-      category: req.body.category,
+      categories: req.body.categories,
       amount: req.body.amount,
+      payee: req.body.payee,
+      description: req.body.description,
     };
 
     transactionsObj.transactions.push(newTransaction);
 
     req.account.balance += newTransaction.amount;
 
-    const ctgr = req.profile.categories.find(
-      (element) => element._id.toString() === newTransaction.category.categoryId
-    );
+    newTransaction.categories.forEach((element) => {
+      const ctgr = req.profile.categories.find(
+        (profileCategories) => profileCategories._id.toString() === element
+      );
 
-    ctgr.transactions.push(newTransaction._id);
+      ctgr.transactions.push(newTransaction._id);
+    });
 
     try {
       await transactionsObj.save();
@@ -32,6 +37,8 @@ const create = async (req, res) => {
 
       return res.json({
         message: "Transaction successfully added!",
+        body: newTransaction,
+        accountBalance: req.account.balance,
       });
     } catch (err) {
       const message = getErrorMessage(err);
@@ -49,13 +56,28 @@ const read = (req, res) => {
   res.json(req.transaction);
 };
 
+const sortTransactions = (arr, ftr) => {
+  return arr.sort(function (a, b) {
+    return  b[ftr] - a[ftr];
+  });
+};
+
 const readAll = async (req, res) => {
   try {
     const transactionsObj = await Transactions.findById(
       req.account.transactions
     );
 
-    res.json(transactionsObj.transactions);
+    const ftr = req.query.sortOrder ? req.query.sortOrder : "receivalDate";
+
+    if (req.query.transactionType === undefined)
+      return res.json(sortTransactions(transactionsObj.transactions, ftr));
+
+    const filteredMany = transactionsObj.transactions.filter(
+      (element) => element.type === req.query.transactionType
+    );
+
+    res.json(sortTransactions(filteredMany, ftr));
   } catch (err) {
     res.status(500).json({
       message: "Something went wrong",
@@ -64,11 +86,50 @@ const readAll = async (req, res) => {
 };
 
 const update = async (req, res) => {
-  req.account.balance += req.body.amount - req.transaction.amount;
+  req.body.categories.forEach((element) => {
+    const ctgr = req.transaction.categories.find(
+      (oldCategory) => oldCategory.toString() === element
+    );
 
-  req.transaction.title = req.body.title;
-  req.transaction.category = req.body.category;
-  req.transaction.amount = req.body.amount;
+    if (ctgr === undefined) {
+      const profCtgr = req.profile.categories.find(
+        (profileCategories) => profileCategories._id.toString() === element
+      );
+
+      profCtgr.transactions.push(req.transaction._id);
+    }
+  });
+
+  req.transaction.categories.forEach((element) => {
+    const ctgr = req.body.categories.find(
+      (newCategory) => newCategory === element.toString()
+    );
+
+    if (ctgr === undefined) {
+      const profCtgr = req.profile.categories.find(
+        (profileCategories) =>
+          profileCategories._id.toString() === element.toString()
+      );
+
+      const index = profCtgr.transactions.findIndex(
+        (it) => it._id.toString() === req.transaction._id.toString()
+      );
+
+      profCtgr.transactions.splice(index, 1);
+    }
+  });
+
+  if (req.body.amount)
+    req.account.balance += req.body.amount - req.transaction.amount;
+
+  if (req.body.title) req.transaction.title = req.body.title;
+  if (req.body.type) req.transaction.type = req.body.type;
+  if (req.body.amount) req.transaction.amount = req.body.amount;
+  if (req.body.receivalDate)
+    req.transaction.receivalDate = req.body.receivalDate;
+  if (req.body.payee) req.transaction.payee = req.body.payee;
+  if (req.body.description) req.transaction.description = req.body.description;
+  if (req.body.categories) req.transaction.categories = req.body.categories;
 
   try {
     await req.transaction.ownerDocument().save();
@@ -76,6 +137,8 @@ const update = async (req, res) => {
 
     return res.json({
       message: "Transaction successfully updated!",
+      body: req.transaction,
+      accountBalance: req.account.balance,
     });
   } catch (err) {
     const message = getErrorMessage(err);
@@ -90,6 +153,19 @@ const remove = async (req, res) => {
       req.account.transactions
     );
 
+    req.transaction.categories.forEach((element) => {
+      const profCtgr = req.profile.categories.find(
+        (profileCategories) =>
+          profileCategories._id.toString() === element.toString()
+      );
+
+      const index = profCtgr.transactions.findIndex(
+        (it) => it._id.toString() === req.transaction._id.toString()
+      );
+
+      profCtgr.transactions.splice(index, 1);
+    });
+
     transactionsObj.transactions = transactionsObj.transactions.filter(
       (elem) => elem._id.toString() !== req.transaction._id.toString()
     );
@@ -101,6 +177,8 @@ const remove = async (req, res) => {
 
     res.json({
       message: "Transaction successfully deleted!",
+      body: req.transaction,
+      accountBalance: req.account.balance,
     });
   } catch (err) {
     res.status(400).json({
@@ -123,9 +201,9 @@ const transactionById = async (req, res, next, transactionId) => {
 
     next();
   } catch (err) {
-    res
-      .status(400)
-      .json({ message: "Could not find user.accounts.transactionsObj" });
+    res.status(400).json({
+      message: "Could not find user.accounts.transactionsObj, (by Id)",
+    });
   }
 };
 

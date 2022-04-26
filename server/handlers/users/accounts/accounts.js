@@ -1,9 +1,31 @@
 const mongoose = require("mongoose");
 const Transactions = require("../../../models/transactions/transactions");
 const getErrorMessage = require("../../../helpers/getErrorMessage");
+const User = require("../../../models/user/user");
+
+const invalidTitle = (accountsMany, newAccountTitle) => {
+  return accountsMany.find(
+    (element) => element.title.toLowerCase() === newAccountTitle.toLowerCase()
+  );
+};
+
+const hasTransactions = async (account) => {
+  const accountTransactionsObj = await Transactions.findById(
+    account.transactions
+  );
+
+  return accountTransactionsObj.transactions.length !== 0;
+};
 
 const create = async (req, res) => {
   const user = req.profile;
+
+  if (invalidTitle(user.accounts, req.body.title))
+    return res.status(400).json({
+      field: "title",
+      message:
+        "Account with this title already exists; please change the title",
+    });
 
   const newAccount = {
     _id: new mongoose.Types.ObjectId(),
@@ -51,6 +73,18 @@ const read = (req, res) => {
 };
 
 const update = async (req, res) => {
+  if (
+    req.body.title !== req.account.title &&
+    invalidTitle(req.profile.accounts, req.body.title)
+  )
+    return res.status(400).json({
+      field: "title",
+      message:
+        "Account with this title already exists; please change the title",
+    });
+
+  
+
   req.account.currency = req.body.currency;
   req.account.title = req.body.title;
   req.account.description = req.body.description;

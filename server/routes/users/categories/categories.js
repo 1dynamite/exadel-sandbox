@@ -3,7 +3,9 @@ const handler = require("../../../handlers/users/categories/categories");
 
 const router = express.Router();
 
+router.get("/", handler.readMany);
 router.post("/", handler.create);
+router.put("/", handler.readManySpecified);
 
 router
   .route("/:categoryId")

@@ -25,6 +25,26 @@ const read = (req, res) => {
   res.json(req.category);
 };
 
+const readMany = (req, res) => {
+  if (req.query.type === undefined) {
+    return res.json(req.profile.categories);
+  }
+
+  const many = req.profile.categories.filter((element) => {
+    return req.query.type === element.type;
+  });
+
+  return res.json(many);
+};
+
+const readManySpecified = (req, res) => {
+  const many = req.body.categories.map((element) =>
+    req.profile.categories.find((it) => it._id.toString() === element)
+  );
+
+  return res.json(many);
+};
+
 const update = async (req, res) => {
   if (req.category.transactions.length !== 0)
     res.status(405).json({
@@ -32,7 +52,6 @@ const update = async (req, res) => {
     });
 
   req.category.title = req.body.categoryTitle;
-  req.category.type = req.body.categoryType;
 
   try {
     await req.profile.save();
@@ -90,6 +109,8 @@ const categoryById = (req, res, next, categoryId) => {
 module.exports = {
   create,
   read,
+  readMany,
+  readManySpecified,
   update,
   remove,
   categoryById,
